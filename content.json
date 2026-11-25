@@ -94,5 +94,32 @@
   "footer": {
     "privacyLink": "Политика конфиденциальности",
     "cookieLink": "Согласие на обработку персональных данных"
+  },
+  "styles": {
+    "heroTitle": { "fontSize": "", "color": "" },
+    "heroBadge": { "fontSize": "", "color": "", "borderColor": "" },
+    "heroCta": { "fontSize": "", "color": "", "bgColor": "" },
+    "pricingTitle": { "fontSize": "", "color": "" },
+    "pricingSubtitle": { "fontSize": "", "color": "" },
+    "pricingRow": { "fontSize": "", "color": "" },
+    "whyUsTitle": { "fontSize": "", "color": "" },
+    "whyUsBadge": { "fontSize": "", "color": "", "borderColor": "" },
+    "whyUsCardTitle": { "fontSize": "", "color": "" },
+    "whyUsCardText": { "fontSize": "", "color": "" },
+    "quizTitle": { "fontSize": "", "color": "" },
+    "quizQuestion": { "fontSize": "", "color": "" },
+    "quizOption": { "fontSize": "", "color": "", "bgColor": "" },
+    "quizSubmit": { "fontSize": "", "color": "", "bgColor": "" },
+    "chequesTitle": { "fontSize": "", "color": "" },
+    "chequesSubtitle": { "fontSize": "", "color": "" },
+    "chequesListItem": { "fontSize": "", "color": "" },
+    "ctaTitle": { "fontSize": "", "color": "" },
+    "ctaSubtitle": { "fontSize": "", "color": "" },
+    "ctaBtnPrimary": { "fontSize": "", "color": "", "bgColor": "" },
+    "ctaBtnSecondary": { "fontSize": "", "color": "", "borderColor": "" },
+    "popupTitle": { "fontSize": "", "color": "" },
+    "headerLogo": { "fontSize": "", "color": "" },
+    "headerCheques": { "fontSize": "", "color": "", "borderColor": "" },
+    "headerEmail": { "fontSize": "", "color": "" }
   }
 }

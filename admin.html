@@ -443,15 +443,155 @@
             </div>
         </div>`;
 
+        // STYLES
+        if (!d.styles) d.styles = {};
+        const defaultStyles = {
+            heroTitle: { fontSize: '', color: '' },
+            heroBadge: { fontSize: '', color: '', borderColor: '' },
+            heroCta: { fontSize: '', color: '', bgColor: '' },
+            pricingTitle: { fontSize: '', color: '' },
+            pricingSubtitle: { fontSize: '', color: '' },
+            pricingRow: { fontSize: '', color: '' },
+            whyUsTitle: { fontSize: '', color: '' },
+            whyUsBadge: { fontSize: '', color: '', borderColor: '' },
+            whyUsCardTitle: { fontSize: '', color: '' },
+            whyUsCardText: { fontSize: '', color: '' },
+            quizTitle: { fontSize: '', color: '' },
+            quizQuestion: { fontSize: '', color: '' },
+            quizOption: { fontSize: '', color: '', bgColor: '' },
+            quizSubmit: { fontSize: '', color: '', bgColor: '' },
+            chequesTitle: { fontSize: '', color: '' },
+            chequesSubtitle: { fontSize: '', color: '' },
+            chequesListItem: { fontSize: '', color: '' },
+            ctaTitle: { fontSize: '', color: '' },
+            ctaSubtitle: { fontSize: '', color: '' },
+            ctaBtnPrimary: { fontSize: '', color: '', bgColor: '' },
+            ctaBtnSecondary: { fontSize: '', color: '', borderColor: '' },
+            popupTitle: { fontSize: '', color: '' },
+            headerLogo: { fontSize: '', color: '' },
+            headerCheques: { fontSize: '', color: '', borderColor: '' },
+            headerEmail: { fontSize: '', color: '' }
+        };
+        for (const key in defaultStyles) {
+            if (!d.styles[key]) d.styles[key] = defaultStyles[key];
+        }
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Шапка</h2>
+            ${styleBlock('headerLogo', 'Логотип (текст)', d.styles.headerLogo, ['fontSize','color'])}
+            ${styleBlock('headerCheques', 'Кнопка «Кассовые чеки»', d.styles.headerCheques, ['fontSize','color','borderColor'])}
+            ${styleBlock('headerEmail', 'Email', d.styles.headerEmail, ['fontSize','color'])}
+        </div>`;
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Главный экран</h2>
+            ${styleBlock('heroTitle', 'Заголовок Hero', d.styles.heroTitle, ['fontSize','color'])}
+            ${styleBlock('heroBadge', 'Бейджи', d.styles.heroBadge, ['fontSize','color','borderColor'])}
+            ${styleBlock('heroCta', 'Кнопка CTA', d.styles.heroCta, ['fontSize','color','bgColor'])}
+        </div>`;
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Тарифы</h2>
+            ${styleBlock('pricingTitle', 'Заголовок секции', d.styles.pricingTitle, ['fontSize','color'])}
+            ${styleBlock('pricingSubtitle', 'Подзаголовок', d.styles.pricingSubtitle, ['fontSize','color'])}
+            ${styleBlock('pricingRow', 'Строки таблицы', d.styles.pricingRow, ['fontSize','color'])}
+        </div>`;
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Почему мы</h2>
+            ${styleBlock('whyUsTitle', 'Заголовок секции', d.styles.whyUsTitle, ['fontSize','color'])}
+            ${styleBlock('whyUsBadge', 'Бейджи карточек', d.styles.whyUsBadge, ['fontSize','color','borderColor'])}
+            ${styleBlock('whyUsCardTitle', 'Заголовки карточек', d.styles.whyUsCardTitle, ['fontSize','color'])}
+            ${styleBlock('whyUsCardText', 'Текст карточек', d.styles.whyUsCardText, ['fontSize','color'])}
+        </div>`;
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Квиз</h2>
+            ${styleBlock('quizTitle', 'Заголовок квиза', d.styles.quizTitle, ['fontSize','color'])}
+            ${styleBlock('quizQuestion', 'Вопросы', d.styles.quizQuestion, ['fontSize','color'])}
+            ${styleBlock('quizOption', 'Варианты ответов', d.styles.quizOption, ['fontSize','color','bgColor'])}
+            ${styleBlock('quizSubmit', 'Кнопка отправки', d.styles.quizSubmit, ['fontSize','color','bgColor'])}
+        </div>`;
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Чеки</h2>
+            ${styleBlock('chequesTitle', 'Заголовок секции', d.styles.chequesTitle, ['fontSize','color'])}
+            ${styleBlock('chequesSubtitle', 'Подзаголовок', d.styles.chequesSubtitle, ['fontSize','color'])}
+            ${styleBlock('chequesListItem', 'Пункты списка', d.styles.chequesListItem, ['fontSize','color'])}
+        </div>`;
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Нижний блок (CTA)</h2>
+            ${styleBlock('ctaTitle', 'Заголовок', d.styles.ctaTitle, ['fontSize','color'])}
+            ${styleBlock('ctaSubtitle', 'Подзаголовок', d.styles.ctaSubtitle, ['fontSize','color'])}
+            ${styleBlock('ctaBtnPrimary', 'Синяя кнопка', d.styles.ctaBtnPrimary, ['fontSize','color','bgColor'])}
+            ${styleBlock('ctaBtnSecondary', 'Кнопка-обводка', d.styles.ctaBtnSecondary, ['fontSize','color','borderColor'])}
+        </div>`;
+
+        html += `<div class="section-block">
+            <h2>🎨 Оформление — Popup</h2>
+            ${styleBlock('popupTitle', 'Заголовок формы', d.styles.popupTitle, ['fontSize','color'])}
+        </div>`;
+
         document.getElementById('editor').innerHTML = html;
+
+        // Синхронизация color picker ↔ text input
+        document.querySelectorAll('input[type="color"][data-path^="styles."]').forEach(colorInput => {
+            const path = colorInput.dataset.path;
+            const textInputs = document.querySelectorAll('input[type="text"][data-path="' + path + '"]');
+            textInputs.forEach(textInput => {
+                colorInput.addEventListener('input', function() {
+                    textInput.value = this.value;
+                    textInput._userChanged = true;
+                });
+                textInput.addEventListener('input', function() {
+                    if (this.value && /^#[0-9a-fA-F]{6}$/.test(this.value)) {
+                        colorInput.value = this.value;
+                        colorInput._userChanged = true;
+                    }
+                });
+            });
+        });
     }
 
     function esc(str) {
         return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
+    function styleBlock(key, label, style, fields) {
+        const labels = {
+            fontSize: 'Размер шрифта (px)',
+            color: 'Цвет текста',
+            bgColor: 'Цвет фона',
+            borderColor: 'Цвет рамки'
+        };
+        let html = `<div class="card-block" style="padding:12px 15px;">
+            <h4 style="margin-bottom:8px;">${label}</h4>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">`;
+        fields.forEach(f => {
+            const val = (style && style[f]) || '';
+            if (f === 'fontSize') {
+                html += `<div style="flex:1;min-width:120px;">
+                    <label style="font-size:11px;color:#888;">${labels[f]}</label>
+                    <input type="number" min="8" max="72" data-path="styles.${key}.${f}" value="${esc(val)}" placeholder="по умолч." style="margin-top:3px;">
+                </div>`;
+            } else {
+                html += `<div style="min-width:100px;">
+                    <label style="font-size:11px;color:#888;">${labels[f]}</label>
+                    <div style="display:flex;gap:5px;align-items:center;margin-top:3px;">
+                        <input type="color" data-path="styles.${key}.${f}" value="${val || '#ffffff'}" style="width:36px;height:36px;padding:2px;cursor:pointer;border:1px solid #333;border-radius:6px;background:#0f3460;">
+                        <input type="text" data-path="styles.${key}.${f}" value="${esc(val)}" placeholder="пусто = по умолч." style="flex:1;font-size:12px;">
+                    </div>
+                </div>`;
+            }
+        });
+        html += `</div></div>`;
+        return html;
+    }
+
     function collectData() {
         const d = JSON.parse(JSON.stringify(contentData));
+        if (!d.styles) d.styles = {};
         document.querySelectorAll('[data-path]').forEach(el => {
             const path = el.dataset.path;
             let val = el.value;
@@ -459,6 +599,19 @@
             // Обработка массивов (разделитель |)
             if (path === 'hero.badges' || path === 'quiz.step1Options' || path === 'quiz.step2Options' || path === 'cheques.list') {
                 val = val.split('|').map(s => s.trim()).filter(s => s);
+            }
+
+            // Обработка стилей: color picker и text input для одного пути
+            if (path.startsWith('styles.')) {
+                if (val === '' || val === '#ffffff' || val === '#000000') {
+                    // Проверяем: если это color input и значение дефолтное — пропускаем
+                    if (el.type === 'color' && !el._userChanged) {
+                        // Не перезаписываем текстовое поле
+                        return;
+                    }
+                }
+                setByPath(d, path, val);
+                return;
             }
 
             // Устанавливаем значение по пути
