@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Админ-панель — визуальный редактор</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="config.js"></script>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+    <div class="login-card">
+        <h1><i class="fas fa-lock" style="color: #F40009;"></i> Вход в админ-панель</h1>
+        <p class="subtitle">Введите ваш GitHub Personal Access Token</p>
+        <div class="form-group">
+            <label for="tokenInput">Personal Access Token</label>
+            <input type="password" id="tokenInput" placeholder="github_pat_… или ghp_…" autocomplete="off">
+        </div>
+        <button class="btn" id="loginBtn">Войти</button>
+        <div class="error-msg" id="loginError" role="alert"></div>
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer" class="help-link">
+            <i class="fas fa-external-link-alt"></i> Создать fine-grained токен (все репозитории, Contents: Read and write)
+        </a>
+    </div>
+</div>
+
+<div class="editor-app" id="editorApp">
+    <div class="editor-toolbar">
+        <div class="toolbar-row toolbar-row-top">
+            <div class="app-title">
+                <i class="fas fa-magic" style="color: #F40009;"></i>
+                <span id="projectNameHeader" style="font-weight: 600; margin-left: 8px;">Редактор</span>
+                <span id="repoNameHeader" style="color: #888; font-weight: 400; margin-left: 8px; font-size: 13px;"></span>
+            </div>
+            <span class="deploy-badge" id="deployBadge" title="Статус деплоя GitHub Pages. Клик — перепроверить."></span>
+            <button class="toolbar-btn primary" id="saveBtn"><i class="fas fa-cloud-upload-alt"></i> Сохранить в GitHub</button>
+            <span class="unsaved-badge" id="unsavedBadge"><i class="fas fa-circle" style="font-size: 8px;"></i> есть несохранённые</span>
+        </div>
+
+        <div class="toolbar-row address-row">
+            <button class="toolbar-btn" id="homeBtn" title="Вернуться к редактированию index.html" aria-label="На главную"><i class="fas fa-home"></i></button>
+            <div class="repos-wrap">
+                <button class="repos-btn" id="reposBtn" title="Список всех моих репозиториев"><i class="fas fa-code-branch"></i> Мои репозитории <i class="fas fa-caret-down"></i></button>
+                <div class="repos-dropdown" id="reposDropdown"></div>
+            </div>
+            <form class="address-bar" id="addressBar" autocomplete="off">
+                <i class="fas fa-file address-icon" id="addressIcon"></i>
+                <span class="address-prefix" id="addressPrefix"></span>
+                <input type="text" class="address-input" id="addressInput" list="pagesList" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="страница: about.html или owner/repo" aria-label="Адрес страницы" title="Введите путь страницы (about.html), owner/repo или github.com/owner/repo">
+                <button type="submit" class="address-go" id="addressGo" title="Перейти" aria-label="Перейти"><i class="fas fa-arrow-right"></i></button>
+            </form>
+            <datalist id="pagesList"></datalist>
+        </div>
+
+        <div class="toolbar-row toolbar-row-bottom">
+            <div class="toolbar-actions">
+                <button class="toolbar-btn" id="openSiteBtn" title="Открыть текущую страницу в новой вкладке"><i class="fas fa-external-link-alt"></i> Открыть сайт</button>
+                <button class="toolbar-btn" id="checkBtn" title="Проверить токен"><i class="fas fa-shield-alt"></i> Проверить</button>
+                <button class="toolbar-btn" id="reloadBtn" title="Обновить превью"><i class="fas fa-sync"></i> Обновить</button>
+
+                <!-- НОВОЕ: Preview режимы -->
+                <div class="preview-modes" title="Режимы превью">
+                    <button class="toolbar-btn preview-btn active" data-width="100" title="Десктоп (100%)"><i class="fas fa-desktop"></i></button>
+                    <button class="toolbar-btn preview-btn" data-width="768" title="Планшет (768px)"><i class="fas fa-tablet-alt"></i></button>
+                    <button class="toolbar-btn preview-btn" data-width="375" title="Мобильный (375px)"><i class="fas fa-mobile-alt"></i></button>
+                </div>
+
+                <!-- НОВОЕ: Поиск -->
+                <button class="toolbar-btn" id="searchBtn" title="Поиск по текстам"><i class="fas fa-search"></i></button>
+
+                <!-- НОВОЕ: История -->
+                <button class="toolbar-btn" id="historyBtn" title="История версий"><i class="fas fa-history"></i></button>
+
+                <!-- НОВОЕ: Список правок -->
+                <button class="toolbar-btn" id="pendingBtn" title="Несохранённые правки"><i class="fas fa-list"></i> <span id="pendingCount">0</span></button>
+
+                <!-- НОВОЕ: Файлы -->
+                <button class="toolbar-btn" id="filesBtn" title="Загруженные файлы"><i class="fas fa-folder"></i> Файлы</button>
+
+                <!-- НОВОЕ: Меню инструментов -->
+                <div class="tools-wrap">
+                    <button class="toolbar-btn" id="toolsBtn" title="Инструменты"><i class="fas fa-tools"></i> Инструменты <i class="fas fa-caret-down"></i></button>
+                    <div class="tools-dropdown" id="toolsDropdown">
+                        <button class="tools-item" id="hidePlaceholdersBtn"><i class="fas fa-eye-slash"></i> Скрыть заглушки</button>
+                        <button class="tools-item" id="showPlaceholdersBtn"><i class="fas fa-eye"></i> Поставить заглушки</button>
+                        <button class="tools-item" id="cleanBtn"><i class="fas fa-broom"></i> Очистить метки</button>
+                        <button class="tools-item" id="resetBtn"><i class="fas fa-redo"></i> Переподготовить</button>
+                    </div>
+                </div>
+
+                <button class="toolbar-btn" id="logoutBtn" title="Выйти" aria-label="Выйти"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-banner" id="hintBanner">
+        <i class="fas fa-lightbulb"></i> Клик по <strong>тексту/фото</strong> — редактирование. <strong>Alt+клик</strong> по ссылке — открыть страницу в админке. <strong>Ctrl+клик</strong> — новая вкладка. <strong>Ctrl+S</strong> — сохранить. <strong>Ctrl+Enter</strong> — применить. <strong>Ctrl+L</strong> — адресная строка. <strong>Esc</strong> — закрыть панель.
+        <button class="hint-close" id="hintCloseBtn" title="Скрыть подсказку" aria-label="Скрыть">×</button>
+    </div>
+
+    <div class="setup-screen" id="setupScreen">
+        <div class="setup-card">
+            <div class="setup-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+            <h2 id="setupTitle">Подготовка сайта</h2>
+            <p>Админка автоматически:<br>• Загрузит текущую страницу<br>• Пометит <strong>весь видимый текст</strong> (любой язык, цифры)<br>• Расставит метки на <strong>фотографии</strong> (с уникальными ID)<br>• Сохранит обратно в репозиторий</p>
+            <div class="token-check-box"><h3><i class="fas fa-key"></i> Информация о токене</h3><div id="tokenInfo">Проверяю...</div></div>
+            <button class="btn" id="prepareBtn"><i class="fas fa-download"></i> Подготовить страницу</button>
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-small" id="checkBtn2"><i class="fas fa-shield-alt"></i> Проверить токен</button>
+                <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small" style="text-decoration: none; text-align: center; color: #fff;"><i class="fas fa-plus"></i> Новый токен</a>
+            </div>
+            <div id="errorDetails" role="alert"></div>
+            <div class="progress-log" id="progressLog" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="iframe-wrapper" id="iframeWrapper" style="display: none;">
+        <div class="iframe-loader" id="iframeLoader">
+            <div class="spinner"></div>
+            <div class="loader-text">Загрузка страницы...</div>
+            <div class="loader-status" id="loaderStatus">Инициализация</div>
+        </div>
+        <iframe id="siteIframe" class="site-iframe" title="Превью сайта" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+    </div>
+</div>
+
+<div class="edit-panel" id="editPanel" role="dialog" aria-modal="true" aria-label="Редактирование">
+    <div class="edit-panel-header">
+        <h3><span id="editTitle">Редактирование</span><span class="key-badge" id="editKey"></span></h3>
+        <button class="edit-panel-close" id="closePanelBtn" aria-label="Закрыть">✕</button>
+    </div>
+    <div id="editPanelContent"></div>
+    <div class="edit-panel-actions">
+        <button class="toolbar-btn btn-secondary" id="cancelBtn">Отмена</button>
+        <button class="toolbar-btn primary" id="applyBtn">Применить</button>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ: Поиск -->
+<div class="modal-overlay" id="searchModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3><i class="fas fa-search" style="color:#F40009;"></i> Поиск по текстам страницы</h3>
+            <button class="modal-close" data-close="searchModal" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="modal-body">
+            <input type="text" id="searchInput" placeholder="Введите текст для поиска..." class="modal-input" autocomplete="off">
+            <div class="search-meta" id="searchMeta"></div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ: История версий -->
+<div class="modal-overlay" id="historyModal">
+    <div class="modal-box modal-large">
+        <div class="modal-header">
+            <h3><i class="fas fa-history" style="color:#F40009;"></i> История версий: <span id="historyFileName"></span></h3>
+            <button class="modal-close" data-close="historyModal" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="history-list" id="historyList">Загрузка...</div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ: Список правок -->
+<div class="modal-overlay" id="pendingModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3><i class="fas fa-list" style="color:#F40009;"></i> Несохранённые правки</h3>
+            <button class="modal-close" data-close="pendingModal" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="pending-list" id="pendingList"><p class="empty">Пусто</p></div>
+            <div class="modal-actions">
+                <button class="toolbar-btn btn-secondary" id="discardAllBtn"><i class="fas fa-times"></i> Отменить все</button>
+                <button class="toolbar-btn primary" id="saveFromListBtn"><i class="fas fa-cloud-upload-alt"></i> Сохранить все</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ: Файлы -->
+<div class="modal-overlay" id="filesModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3><i class="fas fa-folder" style="color:#F40009;"></i> Файлы в папке <code>files/</code> <span id="filesCount"></span></h3>
+            <button class="modal-close" data-close="filesModal" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="files-list" id="filesList">Загрузка...</div>
+        </div>
+    </div>
+</div>
+
+<div class="status-bar" id="statusBar" role="status" aria-live="polite"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>
