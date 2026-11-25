@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Законная оптимизация НДС для бизнеса — снизим налог без риска и посредников</title>
+    <meta name="description" content="Получите бесплатный гайд «НДС 2026: что ФНС проверяет в первую очередь». Гарантия до 3 лет. Работаем по всей России. Оплата по факту результата">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo_ikonka.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #2a2a2a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============ HEADER ============ */
+        .header {
+            padding: 15px 0;
+            background: #2a2a2a;
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .header-logo img { width: 31px; height: 31px; }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-cheques {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            height: 33px;
+            border: 1px solid #3b82f6;
+            border-radius: 50px;
+            background: transparent;
+            color: #3b82f6;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .header-cheques:hover { background: #3b82f6; color: #fff; }
+
+        .header-email {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-email:hover { opacity: 0.7; }
+        .header-email img { width: 17px; height: 17px; }
+
+        .header-telegram {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            transition: transform 0.3s ease;
+        }
+
+        .header-telegram:hover { transform: scale(1.1); }
+        .header-telegram img { width: 100%; height: 100%; }
+
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content { max-width: 550px; }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
+        }
+
+        .hero-title span { color: #3b82f6; }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border: 1px solid #c3c3c3;
+            border-radius: 5px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.74);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            height: 54px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover { background: #2563eb; transform: translateY(-2px); }
+
+        .hero-image { display: flex; justify-content: center; align-items: center; }
+        .hero-image img { max-width: 100%; height: auto; border-radius: 12px; }
+
+        /* ============ PRICING ============ */
+        .pricing { padding: 40px 0 60px; background: #2a2a2a; }
+
+        .pricing-subtitle {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .pricing-subtitle span { color: #3b82f6; }
+
+        .pricing-table {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #333;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .pricing-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #3b82f6;
+            padding: 20px 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .pricing-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 18px 25px;
+            border-top: 1px solid #444;
+            font-size: 15px;
+        }
+
+        .pricing-row-value { text-align: right; font-weight: 600; }
+
+        .pricing-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #444;
+            text-align: center;
+        }
+
+        .pricing-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            height: 45px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 30px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pricing-btn:hover { background: #2563eb; }
+
+        /* ============ WHY US ============ */
+        .why-us { padding: 60px 0; }
+
+        .why-us-title {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 50px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px 30px;
+        }
+
+        .why-us-card {
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 25px 22px;
+            transition: border-color 0.3s ease;
+        }
+
+        .why-us-card:hover {
+            border-color: #3b82f6;
+        }
+
+        .why-us-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 12px;
+            border: 1px solid #3b82f6;
+            border-radius: 5px;
+            font-size: 10px;
+            color: #3b82f6;
+            margin-bottom: 12px;
+        }
+
+        .why-us-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+
+        .why-us-card-text {
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.75);
+        }
+
+        /* ============ CHEQUES SECTION ============ */
+        .cheques { padding: 60px 0; }
+
+        .cheques-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .cheques-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .cheques-content h2 span { color: #3b82f6; }
+
+        .cheques-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 25px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .cheques-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .cheques-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .cheques-list li::before {
+            content: '✔';
+            color: #3b82f6;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .cheques-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cheques-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 25px;
+            height: 45px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .cheques-btn-primary:hover { background: #2563eb; }
+
+        .cheques-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 25px;
+            height: 45px;
+            background: transparent;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cheques-btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        .cheques-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* ============ QUIZ ============ */
+        .quiz { padding: 60px 0; }
+
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .quiz-header {
+            padding: 25px 30px;
+            background: #3b82f6;
+            text-align: center;
+        }
+
+        .quiz-header-title { font-size: 18px; font-weight: 700; color: #fff; }
+
+        .quiz-content { padding: 30px; background: #333; }
+
+        .quiz-progress {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 2px;
+            width: 33%;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-step { display: none; }
+        .quiz-step.active { display: block; }
+
+        .quiz-question { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
+
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: #3b82f6;
+            border: 1px solid transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover { background: #2563eb; }
+
+        .quiz-option input[type="radio"] { margin-right: 15px; accent-color: #fff; }
+        .quiz-option label { cursor: pointer; flex: 1; font-size: 14px; }
+
+        .quiz-nav { display: flex; justify-content: space-between; margin-top: 25px; gap: 10px; }
+
+        .quiz-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            height: 45px;
+            background: #fff;
+            border: none;
+            border-radius: 50px;
+            color: #2a2a2a;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .quiz-btn:hover { background: #f0f0f0; }
+        .quiz-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .quiz-contact-methods { display: flex; gap: 10px; margin-bottom: 15px; }
+
+        .quiz-contact-method {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border: 1px solid #555;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #2a2a2a;
+        }
+
+        .quiz-contact-method:hover { background: #444; }
+        .quiz-contact-method input[type="radio"] { margin-right: 6px; }
+
+        .quiz-input {
+            width: 100%;
+            padding: 14px 20px;
+            background: #2a2a2a;
+            border: 1px solid #555;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 14px;
+            margin-bottom: 12px;
+            font-family: inherit;
+        }
+
+        .quiz-input:focus { outline: none; border-color: #3b82f6; }
+        .quiz-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+        .quiz-submit {
+            width: 100%;
+            padding: 15px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: inherit;
+        }
+
+        .quiz-submit:hover { background: #2563eb; }
+
+        /* ============ CTA BOTTOM ============ */
+        .cta-bottom {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-bottom-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .cta-bottom-subtitle {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+        }
+
+        .cta-bottom-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-blue {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            height: 54px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-blue:hover { background: #2563eb; transform: translateY(-2px); }
+
+        .cta-btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            height: 54px;
+            background: transparent;
+            border: 1px solid #3b82f6;
+            border-radius: 50px;
+            color: #3b82f6;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-outline:hover { background: #3b82f6; color: #fff; }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            padding: 20px 0;
+            background: #222;
+            border-top: 1px solid #333;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover { color: #3b82f6; }
+
+        /* ============ SCROLL TO TOP ============ */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .scroll-top svg {
+            width: 22px;
+            height: 22px;
+            fill: #ffffff;
+        }
+
+        /* ============ POPUP ============ */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup.active { display: flex; }
+
+        .popup-container {
+            background: #ffffff;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 25px;
+            height: 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .popup-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2a2a2a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .popup-form { display: flex; flex-direction: column; gap: 12px; }
+
+        .popup-input {
+            padding: 14px 20px;
+            border: 1px solid #eee;
+            border-radius: 7px;
+            background: #f6f6f6;
+            color: #000;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .popup-input::placeholder { color: rgba(0, 0, 0, 0.5); }
+
+        .popup-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .popup-checkbox input { margin-top: 2px; }
+
+        .popup-submit {
+            padding: 15px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: inherit;
+            margin-top: 10px;
+        }
+
+        .popup-submit:hover { background: #2563eb; }
+
+        /* ============ COOKIE BANNER ============ */
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            border-radius: 10px;
+            padding: 18px 22px;
+            max-width: 320px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            z-index: 500;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .cookie-banner.hidden { display: none; }
+
+        .cookie-banner a { color: #3b82f6; }
+
+        .cookie-banner-btn {
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 959px) {
+            .hero-inner, .cheques-inner { grid-template-columns: 1fr; }
+            .hero-content { max-width: 100%; text-align: center; }
+            .hero-title { font-size: 28px; }
+            .hero-badges { justify-content: center; }
+            .hero-image { order: -1; margin-bottom: 20px; }
+            .hero-image img { max-width: 400px; }
+            .why-us-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .cheques-image { order: -1; text-align: center; }
+            .cheques-image img { max-width: 400px; }
+        }
+
+        @media (max-width: 639px) {
+            .hero-title { font-size: 24px; }
+            .hero-cta { width: 100%; }
+            .why-us-grid { grid-template-columns: 1fr; }
+            .header-inner { flex-direction: column; align-items: flex-start; }
+            .header-right { width: 100%; flex-wrap: wrap; gap: 10px; }
+            .pricing-header, .pricing-row { grid-template-columns: 1fr; gap: 5px; }
+            .pricing-row-value { text-align: left; }
+            .cheques-btns { flex-direction: column; }
+            .cheques-btns a { width: 100%; text-align: center; }
+            .quiz-contact-methods { flex-direction: column; }
+        }
+
+        @media (max-width: 479px) {
+            .hero-title { font-size: 22px; }
+            .hero-badges { flex-direction: column; }
+            .container { padding: 0 15px; }
+            .cookie-banner { left: 15px; right: 15px; bottom: 15px; max-width: none; }
+            .scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+            .scroll-top svg { width: 18px; height: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============ HEADER ============ -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="header-logo">
+                    <img src="images/logo_ikonka.png" alt="Бизнес-поддержка">
+                    <span>Бизнес-поддержка</span>
+                </a>
+                <div class="header-right">
+                    <a href="#cheques" class="header-cheques">Кассовые чеки</a>
+                    <a href="mailto:bizpoddergka2027@gmail.com" class="header-email">
+                        <img src="images/pochta.png" alt="Email">
+                        <span>bizpoddergka2027@gmail.com</span>
+                    </a>
+                    <a href="https://t.me/bizpoddergka_bot" target="_blank" class="header-telegram">
+                        <img src="images/telegram.png" alt="Telegram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Легальное снижение НДС для компаний — <span>уменьшим налог без рисков</span> и посредников
+                    </h1>
+                    <div class="hero-badges">
+                        <div class="hero-badge">Поддержка до 3 лет</div>
+                        <div class="hero-badge">Работаем во всех регионах</div>
+                        <div class="hero-badge">Платите за достигнутый результат</div>
+                    </div>
+                    <button class="hero-cta" onclick="openPopup()">Получить бесплатную консультацию</button>
+                </div>
+                <div class="hero-image">
+                    <img src="images/bizpoddergka_1_glavn.png" alt="Бизнес-поддержка">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="pricing-subtitle">Понятные тарифы — <span>оплата с фактической экономии</span></h2>
+            <p style="text-align:center;font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:25px;">Без авансов, оплата только с результата.</p>
+            <div class="pricing-table">
+                <div class="pricing-header">
+                    <div>Оборот<br><small style="font-weight:400;font-size:12px;">(НДС к снижению)</small></div>
+                    <div>Базовый тариф<br><small style="font-weight:400;font-size:12px;">Снижение по текущим периодам</small></div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-row-title">0–15 млн ₽</div>
+                    <div class="pricing-row-value">3,5%</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-row-title">15–50 млн ₽</div>
+                    <div class="pricing-row-value">2,5%</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-row-title">50–150 млн ₽</div>
+                    <div class="pricing-row-value">1,8%</div>
+                </div>
+                <div class="pricing-footer">
+                    <button class="pricing-btn" onclick="openPopup()">Рассчитать тариф для бизнеса</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHY US ============ -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="why-us-title">Почему компании работают<br>именно с нами?</h2>
+            <div class="why-us-grid">
+                <div class="why-us-card">
+                    <div class="why-us-badge">Без авансов</div>
+                    <h3 class="why-us-card-title">Оплата за результат</h3>
+                    <p class="why-us-card-text">Вы платите лишь после реально полученной экономии.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-badge">Прозрачные методы</div>
+                    <h3 class="why-us-card-title">Работа по НК РФ</h3>
+                    <p class="why-us-card-text">Применяем лишь легальные схемы (глава 21 НК РФ).</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-badge">Любая сложность</div>
+                    <h3 class="why-us-card-title">Непростые задачи</h3>
+                    <p class="why-us-card-text">Подходят любые ОКВЭД и любые обороты.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-badge">Стаж свыше 12 лет</div>
+                    <h3 class="why-us-card-title">Вход без комиссии</h3>
+                    <p class="why-us-card-text">Первый миллион рублей снижения — бесплатно при старте.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-badge">Проверенная команда</div>
+                    <h3 class="why-us-card-title">На пробном объёме</h3>
+                    <p class="why-us-card-text">Специалисты с реальной практикой, а не теоретики.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-badge">Длительное сопровождение</div>
+                    <h3 class="why-us-card-title">До 3 лет</h3>
+                    <p class="why-us-card-text">Ведём процесс целиком и защищаем вас на проверках.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CHEQUES ============ -->
+    <section class="cheques" id="cheques">
+        <div class="container">
+            <div class="cheques-inner">
+                <div class="cheques-content">
+                    <h2>Чеки кассовые и товарные с QR-кодом <span>для отчётности</span></h2>
+                    <p class="cheques-subtitle"><strong>Подготовим документы под вашу задачу</strong> — оперативно, аккуратно и без лишних вопросов</p>
+                    <ul class="cheques-list">
+                        <li>Настоящие чеки с QR-кодом (проверка через сайт ФНС)</li>
+                        <li>Для любых сфер: стройка, сервис, розница и опт</li>
+                        <li>Подготовка в день заявки</li>
+                        <li>Приезжать никуда не нужно — всё удалённо</li>
+                    </ul>
+                    <div class="cheques-btns">
+                        <a href="https://t.me/bizpoddergka_bot" target="_blank" class="cheques-btn-primary">Узнать подробнее</a>
+                        <button class="cheques-btn-secondary" onclick="openPopup()">Получить расчёт</button>
+                    </div>
+                </div>
+                <div class="cheques-image">
+                    <img src="images/bizpoddergka_2_cheki.png" alt="Чеки">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section class="quiz">
+        <div class="container">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2 class="quiz-header-title">Узнайте, какой тариф подходит именно вам</h2>
+                </div>
+                <div class="quiz-content">
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" id="quizProgress"></div>
+                    </div>
+
+                    <!-- Шаг 1 -->
+                    <div class="quiz-step active" id="step1">
+                        <h3 class="quiz-question">За какой период нужно снижение НДС?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="period" value="Текущий квартал"><span>Текущий квартал</span></label>
+                            <label class="quiz-option"><input type="radio" name="period" value="Прошедший период"><span>Прошедший период</span></label>
+                        </div>
+                        <div class="quiz-nav">
+                            <button class="quiz-btn" disabled>Назад</button>
+                            <button class="quiz-btn" onclick="nextStep(1)">Далее</button>
+                        </div>
+                    </div>
+
+                    <!-- Шаг 2 -->
+                    <div class="quiz-step" id="step2">
+                        <h3 class="quiz-question">Размер НДС к снижению:</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="amount" value="До 5 млн ₽"><span>До 5 млн ₽</span></label>
+                            <label class="quiz-option"><input type="radio" name="amount" value="5-30 млн ₽"><span>5-30 млн ₽</span></label>
+                            <label class="quiz-option"><input type="radio" name="amount" value="30-70 млн ₽"><span>30-70 млн ₽</span></label>
+                            <label class="quiz-option"><input type="radio" name="amount" value="70-150 млн ₽"><span>70-150 млн ₽</span></label>
+                            <label class="quiz-option"><input type="radio" name="amount" value="Более 150 млн ₽"><span>Более 150 млн ₽</span></label>
+                        </div>
+                        <div class="quiz-nav">
+                            <button class="quiz-btn" onclick="prevStep(2)">Назад</button>
+                            <button class="quiz-btn" onclick="nextStep(2)">Далее</button>
+                        </div>
+                    </div>
+
+                    <!-- Шаг 3 -->
+                    <div class="quiz-step" id="step3">
+                        <h3 class="quiz-question">Финальный шаг</h3>
+                        <p style="margin-bottom:15px;font-size:14px;color:rgba(255,255,255,0.7);">Выберите способ связи:</p>
+                        <div class="quiz-contact-methods">
+                            <label class="quiz-contact-method"><input type="radio" name="contact-type" value="phone" checked><span>📞 Phone</span></label>
+                            <label class="quiz-contact-method"><input type="radio" name="contact-type" value="telegram"><span>✈️ Telegram</span></label>
+                        </div>
+                        <input type="tel" class="quiz-input" placeholder="+7 (___) ___-__-__">
+                        <input type="email" class="quiz-input" placeholder="Напишите ваш email">
+                        <label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:15px;font-size:12px;color:rgba(255,255,255,0.6);">
+                            <input type="checkbox" checked style="margin-top:2px;">
+                            <span>Я согласен с политикой конфиденциальности</span>
+                        </label>
+                        <button class="quiz-submit" onclick="submitQuiz()">Узнать расчёт и получить гайд</button>
+                        <div class="quiz-nav" style="margin-top:15px;">
+                            <button class="quiz-btn" onclick="prevStep(3)">Назад</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA BOTTOM ============ -->
+    <section class="cta-bottom">
+        <div class="container">
+            <h2 class="cta-bottom-title">Есть вопросы?</h2>
+            <p class="cta-bottom-subtitle">Выясните, какую сумму по НДС вы переплачиваете сейчас.</p>
+            <div class="cta-bottom-btns">
+                <button class="cta-btn-blue" onclick="openPopup()">Получить консультацию</button>
+                <a href="https://t.me/bizpoddergka_bot" target="_blank" class="cta-btn-outline">Написать в Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="cookie.html">Согласие на обработку персональных данных</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ POPUP ============ -->
+    <div class="popup" id="popup">
+        <div class="popup-container">
+            <button class="popup-close" onclick="closePopup()">✕</button>
+            <h2 class="popup-title">Оставьте заявку и мы свяжемся с Вами</h2>
+            <form class="popup-form" onsubmit="submitPopup(event)">
+                <div style="display:flex;gap:10px;margin-bottom:5px;">
+                    <label class="quiz-contact-method" style="flex:1;background:#f6f6f6;border-color:#eee;color:#000;">
+                        <input type="radio" name="popup-contact" value="phone" checked><span>📞 Phone</span>
+                    </label>
+                    <label class="quiz-contact-method" style="flex:1;background:#f6f6f6;border-color:#eee;color:#000;">
+                        <input type="radio" name="popup-contact" value="telegram"><span>✈️ Telegram</span>
+                    </label>
+                </div>
+                <input type="tel" class="popup-input" placeholder="+7 (___) ___-__-__">
+                <input type="email" class="popup-input" placeholder="Напишите ваш email">
+                <label class="popup-checkbox">
+                    <input type="checkbox" checked>
+                    <span>Нажимая на кнопку вы соглашаетесь с политикой конфиденциальности</span>
+                </label>
+                <button type="submit" class="popup-submit">Оставить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============ SCROLL TO TOP BUTTON ============ -->
+    <button class="scroll-top" id="scrollTop" aria-label="Наверх" title="Наверх">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+        </svg>
+    </button>
+
+    <!-- ============ COOKIE BANNER ============ -->
+    <div class="cookie-banner" id="cookieBanner">
+        🍪 Используем файлы cookie для улучшения работы сайта. <a href="cookie.html">Подробнее</a>
+        <br>
+        <button class="cookie-banner-btn" onclick="closeCookie()">Хорошо, понятно</button>
+    </div>
+
+    <script>
+        // Quiz
+        let currentStep = 1;
+        function nextStep(s) {
+            document.getElementById('step' + s).classList.remove('active');
+            document.getElementById('step' + (s+1)).classList.add('active');
+            currentStep = s + 1;
+            document.getElementById('quizProgress').style.width = (currentStep/3*100) + '%';
+        }
+        function prevStep(s) {
+            document.getElementById('step' + s).classList.remove('active');
+            document.getElementById('step' + (s-1)).classList.add('active');
+            currentStep = s - 1;
+            document.getElementById('quizProgress').style.width = (currentStep/3*100) + '%';
+        }
+        function submitQuiz() {
+            alert('Спасибо! Мы свяжемся с вами в ближайшее время и отправим гайд.');
+        }
+
+        // Popup
+        function openPopup() { document.getElementById('popup').classList.add('active'); }
+        function closePopup() { document.getElementById('popup').classList.remove('active'); }
+        function submitPopup(e) {
+            e.preventDefault();
+            alert('Заявка отправлена! Мы свяжемся с вами.');
+            closePopup();
+        }
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
+
+        // Cookie
+        if (localStorage.getItem('cookieAccepted')) {
+            document.getElementById('cookieBanner').classList.add('hidden');
+        }
+        function closeCookie() {
+            document.getElementById('cookieBanner').classList.add('hidden');
+            localStorage.setItem('cookieAccepted', 'true');
+        }
+
+        // Scroll to top
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

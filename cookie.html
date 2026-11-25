@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика использования cookies — Легальное снижение НДС</title>
+    <meta name="description" content="Политика использования файлов cookie на сайте. Как и зачем мы их применяем.">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo_ikonka.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #2a2a2a;
+            color: #ffffff;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============ HEADER ============ */
+        .header {
+            padding: 15px 0;
+            background: #2a2a2a;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .header-logo img { width: 31px; height: 31px; }
+
+        .header-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 20px;
+            height: 33px;
+            border: 1px solid #3b82f6;
+            border-radius: 50px;
+            background: transparent;
+            color: #3b82f6;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .header-back:hover { background: #3b82f6; color: #fff; }
+
+        /* ============ CONTENT ============ */
+        .content {
+            padding: 60px 0 80px;
+        }
+
+        .content h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .content .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .content h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 40px 0 18px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .content h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 25px 0 12px;
+            color: #ffffff;
+        }
+
+        .content p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 16px;
+        }
+
+        .content ul, .content ol {
+            margin: 12px 0 20px 25px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+        }
+
+        .content li {
+            margin-bottom: 10px;
+        }
+
+        .content a {
+            color: #3b82f6;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .content a:hover { color: #60a5fa; }
+
+        .content strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+
+        .info-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+
+        /* ============ COOKIES TABLE ============ */
+        .cookies-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: #1f1f1f;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 14px;
+        }
+
+        .cookies-table th {
+            background: #3b82f6;
+            color: #ffffff;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cookies-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.85);
+            vertical-align: top;
+        }
+
+        .cookies-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cookies-table tr:hover td {
+            background: rgba(59, 130, 246, 0.04);
+        }
+
+        .cookies-table code {
+            background: rgba(59, 130, 246, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #60a5fa;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: #1f1f1f;
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover { color: #3b82f6; }
+
+        .footer .divider {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ============ SCROLL TO TOP ============ */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .scroll-top svg {
+            width: 22px;
+            height: 22px;
+            fill: #ffffff;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .content { padding: 40px 0 60px; }
+            .content h2 { font-size: 19px; }
+            .content h3 { font-size: 16px; }
+            .content p, .content li { font-size: 14px; }
+
+            .cookies-table { font-size: 12px; display: block; overflow-x: auto; }
+            .cookies-table th, .cookies-table td { padding: 10px 12px; }
+
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+            }
+            .scroll-top svg { width: 18px; height: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="header-logo">
+                <img src="images/logo_ikonka.png" alt="Логотип">
+                <span>БизнесПоддержка</span>
+            </a>
+            <a href="index.html" class="header-back">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                На главную
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content">
+        <div class="container">
+            <h1>Политика использования cookies</h1>
+            <p class="subtitle">Дата вступления в силу: 25 ноября 2026 г.</p>
+
+            <p>Мы используем файлы cookies, чтобы сайт работал корректно, а вы получали наилучший пользовательский опыт. В этой политике объясняем, что такое cookies, какие именно мы используем и как вы можете ими управлять.</p>
+
+            <h2>1. Что такое cookies?</h2>
+            <p><strong>Cookies</strong> — это небольшие текстовые файлы, которые браузер сохраняет на вашем устройстве (компьютере, планшете или смартфоне) при посещении сайтов. Они позволяют сайту «узнавать» вас при повторных визитах и запоминать ваши предпочтения.</p>
+            <p>Cookies не содержат вирусов и не могут исполняться как программы. Они не дают нам доступа к вашему устройству или файлам на нём.</p>
+
+            <h2>2. Зачем мы используем cookies?</h2>
+            <p>Мы применяем cookies для следующих целей:</p>
+            <ul>
+                <li><strong>Технические</strong> — обеспечивают корректную работу сайта (без них сайт может не загрузиться);</li>
+                <li><strong>Функциональные</strong> — запоминают ваши настройки (язык, регион, согласие на cookies);</li>
+                <li><strong>Аналитические</strong> — помогают понять, как посетители используют сайт, чтобы мы могли улучшать его;</li>
+                <li><strong>Маркетинговые</strong> — показывают релевантную рекламу (с вашего согласия).</li>
+            </ul>
+
+            <h2>3. Какие cookies мы используем?</h2>
+
+            <h3>🔧 Необходимые (обязательные)</h3>
+            <p>Эти cookies нужны для базовой работы сайта. Их нельзя отключить.</p>
+            <table class="cookies-table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Назначение</th>
+                        <th>Срок</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>cookie_consent</code></td>
+                        <td>Запоминает ваше согласие на использование cookies</td>
+                        <td>1 год</td>
+                    </tr>
+                    <tr>
+                        <td><code>session_id</code></td>
+                        <td>Идентификатор текущей сессии для работы форм</td>
+                        <td>До закрытия вкладки</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>📊 Аналитические</h3>
+            <p>Помогают понять, какие страницы популярны, откуда приходят посетители.</p>
+            <table class="cookies-table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Назначение</th>
+                        <th>Срок</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>_ga</code> / <code>_ym</code></td>
+                        <td>Google Analytics / Яндекс.Метрика — сбор статистики посещений</td>
+                        <td>до 2 лет</td>
+                    </tr>
+                    <tr>
+                        <td><code>_ym_uid</code></td>
+                        <td>Уникальный идентификатор пользователя для Яндекс.Метрики</td>
+                        <td>1 год</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Как управлять cookies?</h2>
+            <p>Вы можете в любой момент изменить настройки cookies. Для этого:</p>
+
+            <div class="info-box">
+                <p>При первом посещении сайта появляется баннер с запросом вашего согласия. Вы можете <strong>принять все cookies</strong> или <strong>отклонить необязательные</strong>.</p>
+            </div>
+
+            <p>Также вы можете управлять cookies через настройки вашего браузера:</p>
+
+            <ul>
+                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+                <li><a href="https://support.mozilla.org/ru/kb/udalenie-kukov" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+                <li><a href="https://support.apple.com/ru-ru/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+                <li><a href="https://support.microsoft.com/ru-ru/microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+                <li><a href="https://yandex.ru/support/browser/personal-data/cookies.html" target="_blank" rel="noopener">Яндекс.Браузер</a></li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>Важно:</strong> Отключение необходимых cookies может привести к некорректной работе сайта. Например, формы обратной связи могут перестать отправляться.</p>
+            </div>
+
+            <h2>5. Удаление cookies</h2>
+            <p>Чтобы удалить уже сохранённые cookies:</p>
+            <ol>
+                <li>Откройте настройки браузера;</li>
+                <li>Перейдите в раздел «Конфиденциальность и безопасность»;</li>
+                <li>Выберите «Очистить данные просмотра»;</li>
+                <li>Отметьте пункт «Файлы cookie и другие данные сайтов»;</li>
+                <li>Нажмите «Удалить».</li>
+            </ol>
+
+            <h2>6. Do Not Track</h2>
+            <p>Если в вашем браузере включена опция <strong>«Do Not Track»</strong> (не отслеживать), мы не собираем аналитические данные о вашем посещении.</p>
+
+            <h2>7. Изменения политики</h2>
+            <p>Мы можем периодически обновлять настоящую политику. Все изменения публикуются на этой странице с указанием даты вступления в силу.</p>
+
+            <h2>8. Контакты</h2>
+            <p>По всем вопросам, связанным с обработкой cookies, обращайтесь:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:bizpoddergka2027@gmail.com">bizpoddergka2027@gmail.com</a></li>
+                <li><strong>Telegram:</strong> <a href="https://t.me/bizpoddergka_bot" target="_blank" rel="noopener">@bizpoddergka_bot</a></li>
+            </ul>
+
+            <p>Дополнительная информация об обработке ваших персональных данных — в <a href="privacy.html">Политике конфиденциальности</a>.</p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="privacy.html">Политика конфиденциальности</a>
+            <span class="divider">·</span>
+            <a href="cookie.html">Политика cookies</a>
+            <span class="divider">·</span>
+            <a href="index.html">Главная</a>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top" id="scrollTop" aria-label="Наверх" title="Наверх">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+        </svg>
+    </button>
+
+    <script>
+        // Показ кнопки "наверх" при скролле
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Плавный скролл наверх по клику
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
