@@ -490,6 +490,7 @@
 
         .quiz-contact-method:hover { background: #444; }
         .quiz-contact-method input[type="radio"] { margin-right: 6px; }
+        .quiz-contact-method img { width: 18px; height: 18px; object-fit: contain; }
 
         .quiz-input {
             width: 100%;
@@ -990,8 +991,8 @@
                         <h3 class="quiz-question">Финальный шаг</h3>
                         <p style="margin-bottom:15px;font-size:14px;color:rgba(255,255,255,0.7);">Выберите способ связи:</p>
                         <div class="quiz-contact-methods">
-                            <label class="quiz-contact-method"><input type="radio" name="contact-type" value="phone" checked><span>📞 Phone</span></label>
-                            <label class="quiz-contact-method"><input type="radio" name="contact-type" value="telegram"><span>✈️ Telegram</span></label>
+                            <label class="quiz-contact-method"><input type="radio" name="contact-type" value="phone" checked><img src="images/phone.png" alt="Телефон"><span>Телефон</span></label>
+                            <label class="quiz-contact-method"><input type="radio" name="contact-type" value="telegram"><img src="images/telegram.png" alt="Telegram"><span>Telegram</span></label>
                         </div>
                         <input type="tel" class="quiz-input" placeholder="+7 (___) ___-__-__" aria-label="Телефон">
                         <input type="email" class="quiz-input" placeholder="Напишите ваш email" aria-label="Email">
@@ -1073,10 +1074,10 @@
             <form class="popup-form" onsubmit="submitPopup(event)">
                 <div style="display:flex;gap:10px;margin-bottom:5px;">
                     <label class="quiz-contact-method" style="flex:1;background:#f6f6f6;border-color:#eee;color:#000;">
-                        <input type="radio" name="popup-contact" value="phone" checked><span>📞 Phone</span>
+                        <input type="radio" name="popup-contact" value="phone" checked><img src="images/phone.png" alt="Телефон"><span>Телефон</span>
                     </label>
                     <label class="quiz-contact-method" style="flex:1;background:#f6f6f6;border-color:#eee;color:#000;">
-                        <input type="radio" name="popup-contact" value="telegram"><span>✈️ Telegram</span>
+                        <input type="radio" name="popup-contact" value="telegram"><img src="images/telegram.png" alt="Telegram"><span>Telegram</span>
                     </label>
                 </div>
                 <input type="tel" class="popup-input" placeholder="+7 (___) ___-__-__" aria-label="Телефон">

@@ -369,6 +369,7 @@
 
         .contact-method:hover { background: #e8e8e8; }
         .contact-method input[type="radio"] { margin-right: 6px; accent-color: var(--accent); }
+        .contact-method img { width: 18px; height: 18px; object-fit: contain; }
 
         .popup-input {
             padding: 14px 20px;
@@ -734,11 +735,11 @@
                 <div class="contact-methods">
                     <label class="contact-method">
                         <input type="radio" name="popup-contact" value="phone" checked>
-                        <span>📞 Phone</span>
+                        <span><img src="images/phone.png" alt="Телефон"> Телефон</span>
                     </label>
                     <label class="contact-method">
                         <input type="radio" name="popup-contact" value="telegram">
-                        <span>✈️ Telegram</span>
+                        <span><img src="images/telegram.png" alt="Telegram"> Telegram</span>
                     </label>
                 </div>
                 <input type="tel" class="popup-input" placeholder="+7 (___) ___-__-__" aria-label="Телефон">
