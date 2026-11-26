@@ -10,80 +10,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ===== ОБЩИЙ ШАБЛОН: НАЧАЛО (идентичен на index.html и cheque.html) ===== */
-        :root {
-            --bg: #2a2a2a;
-            --bg-soft: #333333;
-            --bg-footer: #222222;
-            --accent: #3b82f6;
-            --accent-dark: #2563eb;
-            --text: #ffffff;
-            --muted: rgba(255, 255, 255, 0.75);
-            --line: rgba(255, 255, 255, 0.15);
-            --radius: 12px;
-            --container: 1200px;
-        }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; scrollbar-color: var(--accent) #222222; scrollbar-width: thin; }
 
         body {
             font-family: 'Inter', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: #2a2a2a;
+            color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background:
-                radial-gradient(900px 480px at 85% -10%, rgba(59, 130, 246, 0.10), transparent 60%),
-                radial-gradient(700px 420px at -10% 110%, rgba(59, 130, 246, 0.06), transparent 60%);
-        }
-
-        header, main, footer { position: relative; z-index: 1; }
-
-        ::selection { background: var(--accent); color: #ffffff; }
-
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #222222; }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; border: 2px solid #222222; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
-
-        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-
-        img { max-width: 100%; }
-
-        section { scroll-margin-top: 90px; }
-
         .container {
-            max-width: var(--container);
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* --- Шапка --- */
+        /* ============ HEADER ============ */
         .header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
             padding: 15px 0;
-            background: rgba(42, 42, 42, 0.92);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .header.scrolled {
-            border-bottom-color: #333333;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+            background: #2a2a2a;
+            position: relative;
+            z-index: 100;
         }
 
         .header-inner {
@@ -98,153 +46,259 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 15px;
+            font-size: 20px;
             font-weight: 700;
             color: #ffffff;
             text-decoration: none;
         }
 
-        .header-logo img { width: 31px; height: 31px; }
+        .header-logo img { width: 36px; height: 36px; }
 
-        .header-right { display: flex; align-items: center; gap: 15px; }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
         .header-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 0 20px;
-            height: 33px;
-            border: 1px solid var(--accent);
+            height: 36px;
+            border: 1px solid #3b82f6;
             border-radius: 50px;
             background: transparent;
-            color: var(--accent);
-            font-size: 12px;
+            color: #3b82f6;
+            font-size: 15px;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
-        .header-link:hover { background: var(--accent); color: #ffffff; }
+        .header-link:hover { background: #3b82f6; color: #fff; }
 
         .header-email {
             display: flex;
             align-items: center;
             gap: 4px;
             color: #ffffff;
-            font-size: 12px;
+            font-size: 15px;
             font-weight: 500;
             text-decoration: none;
             transition: opacity 0.3s ease;
         }
 
         .header-email:hover { opacity: 0.7; }
-        .header-email img { width: 17px; height: 17px; }
+        .header-email img { width: 20px; height: 20px; }
 
         .header-telegram {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 26px;
-            height: 26px;
+            width: 29px;
+            height: 29px;
             transition: transform 0.3s ease;
         }
 
         .header-telegram:hover { transform: scale(1.1); }
         .header-telegram img { width: 100%; height: 100%; }
 
-        /* --- Кнопки --- */
-        .btn {
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content { max-width: 550px; }
+
+        .hero-title {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
+        }
+
+        .hero-title span { color: #3b82f6; }
+
+        .hero-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 25px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .hero-subtitle strong { color: #3b82f6; font-weight: 700; }
+
+        .hero-checks {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .hero-checks li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .hero-checks li::before {
+            content: '✔';
+            color: #3b82f6;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .hero-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 0 30px;
             height: 54px;
-            background: var(--accent);
+            background: #3b82f6;
             border: none;
             border-radius: 50px;
             color: #ffffff;
             font-size: 14px;
             font-weight: 600;
-            font-family: inherit;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .btn:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        .hero-btn:hover { background: #2563eb; transform: translateY(-2px); }
 
-        .btn:disabled {
-            background: #555555;
-            color: #999999;
-            cursor: not-allowed;
-            opacity: 0.6;
-            transform: none;
+        .hero-image { display: flex; justify-content: center; align-items: center; }
+        .hero-image img { max-width: 100%; height: auto; border-radius: 12px; }
+
+        /* ============ CARDS ============ */
+        .cards { padding: 60px 0; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
 
-        .btn-lg { height: 66px; padding: 0 42px; font-size: 16px; font-weight: 700; }
+        .card {
+            background: #3b82f6;
+            border-radius: 12px;
+            padding: 25px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 140px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
 
-        .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
-        .btn-outline:hover { background: var(--accent); color: #ffffff; }
+        .card:hover { transform: translateY(-3px); background: #2563eb; }
 
-        .btn-ghost { background: transparent; border: 1px solid #ffffff; color: #ffffff; }
-        .btn-ghost:hover { background: rgba(255, 255, 255, 0.1); transform: none; }
+        .card-bottom { grid-column: span 1; }
 
-        .btn-white { background: #ffffff; color: #2a2a2a; }
-        .btn-white:hover { background: #f0f0f0; transform: none; }
+        .card-title { font-size: 17px; font-weight: 700; color: #ffffff; line-height: 1.3; }
 
-        .btn-block { width: 100%; }
+        /* ============ QUESTION ============ */
+        .question { padding: 60px 0; }
 
-        /* --- Заголовки секций и списки --- */
-        .section-title {
+        .question-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .question-title {
             font-size: 26px;
             font-weight: 700;
             letter-spacing: -0.5px;
+            margin-bottom: 25px;
             line-height: 1.3;
-            margin-bottom: 30px;
         }
 
-        .section-title span { color: var(--accent); }
-        .section-title.center { text-align: center; }
+        .question-subtitle {
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
 
-        .check-list {
+        .question-list {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-bottom: 30px;
         }
 
-        .check-list li {
+        .question-list li {
             display: flex;
             align-items: flex-start;
             gap: 10px;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255,255,255,0.85);
         }
 
-        .check-list li::before {
+        .question-list li::before {
             content: '✔';
-            color: var(--accent);
+            color: #3b82f6;
             font-weight: 700;
             flex-shrink: 0;
         }
 
-        .consent {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin: 15px 0;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
+        .question-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            height: 54px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .consent input { margin-top: 2px; accent-color: var(--accent); }
-        .consent a { color: var(--accent); text-decoration: underline; }
+        .question-cta:hover { background: #2563eb; transform: translateY(-2px); }
 
-        /* --- Подвал --- */
+        .question-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .question-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* ============ FOOTER ============ */
         .footer {
             padding: 20px 0;
-            background: var(--bg-footer);
-            border-top: 1px solid #333333;
+            background: #222;
+            border-top: 1px solid #333;
         }
 
         .footer-inner {
@@ -256,24 +310,25 @@
         }
 
         .footer a {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.6);
             text-decoration: underline;
             transition: color 0.3s ease;
         }
 
-        .footer a:hover { color: var(--accent); }
+        .footer a:hover { color: #3b82f6; }
 
-        /* --- Кнопка «Наверх» --- */
+        /* ============ SCROLL TO TOP ============ */
         .scroll-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
             width: 50px;
             height: 50px;
-            background: var(--accent);
+            background: #3b82f6;
             color: #ffffff;
             border: none;
             border-radius: 50%;
+            font-size: 22px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -286,17 +341,25 @@
             z-index: 999;
         }
 
-        .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
 
         .scroll-top:hover {
-            background: var(--accent-dark);
+            background: #2563eb;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
         }
 
-        .scroll-top svg { width: 22px; height: 22px; fill: #ffffff; }
+        .scroll-top svg {
+            width: 22px;
+            height: 22px;
+            fill: #ffffff;
+        }
 
-        /* --- Попап заявки --- */
+        /* ============ POPUP ============ */
         .popup {
             display: none;
             position: fixed;
@@ -304,11 +367,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.8);
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            padding: 20px;
         }
 
         .popup.active { display: flex; }
@@ -317,9 +379,7 @@
             background: #ffffff;
             border-radius: 15px;
             max-width: 500px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
+            width: 90%;
             padding: 40px;
             position: relative;
         }
@@ -334,7 +394,7 @@
             border: none;
             cursor: pointer;
             font-size: 24px;
-            color: #333333;
+            color: #333;
         }
 
         .popup-title {
@@ -347,18 +407,15 @@
 
         .popup-form { display: flex; flex-direction: column; gap: 12px; }
 
-        .contact-methods-title { color: #2a2a2a; font-size: 14px; margin-bottom: 8px; }
+        .popup-contact-methods { display: flex; gap: 10px; margin-bottom: 5px; }
 
-        .contact-methods { display: flex; gap: 10px; margin-bottom: 5px; }
-
-        .contact-method {
+        .popup-contact-method {
             flex: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
             padding: 12px 18px;
-            border: 1px solid #eeeeee;
+            border: 1px solid #eee;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -367,244 +424,115 @@
             color: #2a2a2a;
         }
 
-        .contact-method:hover { background: #e8e8e8; }
-        .contact-method input[type="radio"] { margin-right: 6px; accent-color: var(--accent); }
-        .contact-method img { width: 18px; height: 18px; object-fit: contain; }
+        .popup-contact-method:hover { background: #e8e8e8; }
+        .popup-contact-method input[type="radio"] { margin-right: 6px; accent-color: #3b82f6; }
+        .popup-contact-method img { width: 18px; height: 18px; object-fit: contain; }
 
         .popup-input {
             padding: 14px 20px;
-            border: 1px solid #eeeeee;
+            border: 1px solid #eee;
             border-radius: 7px;
             background: #f6f6f6;
-            color: #000000;
-            font-size: 16px;
+            color: #000;
+            font-size: 14px;
             font-family: inherit;
         }
 
         .popup-input::placeholder { color: rgba(0, 0, 0, 0.5); }
-        .popup-input:focus { outline: none; border-color: var(--accent); }
+        .popup-input:focus { outline: none; border-color: #3b82f6; }
 
         .popup-checkbox {
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            font-size: 13px;
-            color: #555555;
+            font-size: 12px;
+            color: #666;
         }
 
-        .popup-checkbox input { margin-top: 2px; accent-color: var(--accent); }
-        .popup-checkbox a { color: var(--accent); text-decoration: underline; }
+        .popup-checkbox input { margin-top: 2px; }
+        .popup-checkbox a { color: #3b82f6; text-decoration: underline; }
 
-        /* --- Cookie-баннер --- */
+        .popup-submit {
+            padding: 15px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: inherit;
+            margin-top: 10px;
+        }
+
+        .popup-submit:hover { background: #2563eb; }
+        .popup-submit:disabled {
+            background: #999;
+            color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* ============ COOKIE BANNER ============ */
         .cookie-banner {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #333333;
+            background: #333;
             border-radius: 10px;
             padding: 18px 22px;
             max-width: 320px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             z-index: 500;
             font-size: 13px;
             line-height: 1.5;
         }
 
         .cookie-banner.hidden { display: none; }
-        .cookie-banner a { color: var(--accent); }
+
+        .cookie-banner a { color: #3b82f6; }
 
         .cookie-banner-btn {
             margin-top: 12px;
             padding: 8px 20px;
-            background: var(--accent);
+            background: #3b82f6;
             border: none;
             border-radius: 20px;
-            color: #ffffff;
+            color: #fff;
             font-size: 13px;
             cursor: pointer;
             font-family: inherit;
-            transition: background 0.3s ease;
         }
 
-        .cookie-banner-btn:hover { background: var(--accent-dark); }
-
-        /* --- Появление блоков при скролле --- */
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .reveal.in { opacity: 1; transform: none; }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after { transition: none !important; animation: none !important; }
-            .reveal { opacity: 1; transform: none; }
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 959px) {
+            .hero-inner, .question-inner { grid-template-columns: 1fr; }
+            .hero-content { max-width: 100%; text-align: center; }
+            .hero-title { font-size: 40px; }
+            .hero-image { order: -1; margin-bottom: 20px; }
+            .hero-image img { max-width: 400px; }
+            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .question-image { order: -1; text-align: center; margin-bottom: 20px; }
+            .question-image img { max-width: 400px; }
         }
 
-        /* --- Базовый адаптив шаблона --- */
         @media (max-width: 639px) {
+            .hero-title { font-size: 36px; }
+            .hero-btn { width: 100%; }
+            .cards-grid { grid-template-columns: 1fr; }
             .header-inner { flex-direction: column; align-items: flex-start; }
             .header-right { width: 100%; flex-wrap: wrap; gap: 10px; }
-            .contact-methods { flex-direction: column; }
+            .question-cta { width: 100%; text-align: center; }
+            .popup-contact-methods { flex-direction: column; }
         }
 
         @media (max-width: 479px) {
+            .hero-title { font-size: 34px; }
             .container { padding: 0 15px; }
             .cookie-banner { left: 15px; right: 15px; bottom: 15px; max-width: none; }
             .scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
             .scroll-top svg { width: 18px; height: 18px; }
-            .btn-lg { width: 100%; height: 58px; font-size: 15px; }
-        }
-        /* ===== ОБЩИЙ ШАБЛОН: КОНЕЦ ===== */
-
-        /* ===== СТИЛИ СТРАНИЦЫ ЧЕКОВ ===== */
-        .hero { padding: 90px 0 60px; }
-
-        .hero-inner {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 60px;
-            align-items: start;
-            width: 100%;
-        }
-
-        .hero-content { max-width: 640px; }
-
-        .hero-title {
-            font-size: 54px;
-            font-weight: 800;
-            line-height: 1.18;
-            letter-spacing: -0.5px;
-            margin-bottom: 30px;
-        }
-
-        .hero-subtitle {
-            font-size: 22px;
-            line-height: 1.5;
-            margin-bottom: 34px;
-            color: #ffffff;
-        }
-
-        .hero-subtitle strong { color: var(--accent); font-weight: 700; }
-
-        .hero-checks { gap: 10px; margin-bottom: 40px; }
-        .hero-checks li { font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.95); }
-
-        .hero-image {
-            overflow: hidden;
-            border-radius: 12px;
-            background: var(--bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .hero-image img {
-            display: block;
-            width: 100%;
-            height: 516px;
-            object-fit: cover;
-        }
-
-        .cards { padding: 60px 0; }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 15px;
-        }
-
-        .card {
-            background: var(--accent);
-            border-radius: var(--radius);
-            padding: 30px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 140px;
-            grid-column: span 2;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-3px); background: var(--accent-dark); }
-
-        .card-bottom { grid-column: span 3; }
-
-        .card-title { font-size: 18px; font-weight: 600; color: #ffffff; line-height: 1.3; }
-
-        .question { padding: 60px 0; }
-
-        .question-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: flex-start;
-        }
-
-        .question-left, .question-right { display: flex; flex-direction: column; }
-
-        .question-title { margin-bottom: 25px; }
-
-        .question-subtitle { font-size: 19px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
-
-        .question .check-list { margin-bottom: 0; }
-
-        .question-cta { margin-top: 30px; align-self: flex-start; }
-
-        .question-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .question-image img { height: auto; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.15); }
-
-        @media (max-width: 1199px) {
-            .hero { padding: 60px 0 50px; }
-            .hero-inner { gap: 40px; }
-            .hero-title { font-size: 44px; }
-            .hero-content { max-width: 100%; }
-            .hero-image img { height: 380px; }
-        }
-
-        @media (max-width: 959px) {
-            .hero { padding: 50px 0 40px; }
-            .hero-inner { grid-template-columns: 1fr; gap: 30px; }
-            .hero-content { max-width: 100%; }
-            .hero-title { font-size: 36px; line-height: 1.15; }
-            .hero-subtitle { font-size: 19px; line-height: 1.45; }
-            .hero-checks li { font-size: 16px; line-height: 1.6; }
-            .hero-image { order: -1; margin-bottom: 10px; max-width: 420px; }
-            .hero-image img { height: 300px; }
-            .cards-grid { grid-template-columns: repeat(6, 1fr); }
-            .card { grid-column: span 3; }
-            .card-bottom { grid-column: span 3; }
-            .question-inner { grid-template-columns: 1fr; gap: 30px; }
-            .question-image { margin-top: 20px; }
-            .question-image img { max-width: 297px; }
-        }
-
-        @media (max-width: 639px) {
-            .hero { padding-top: 40px; }
-            .hero-title { font-size: 30px; line-height: 1.2; }
-            .hero-subtitle { font-size: 18px; }
-            .hero-checks li { font-size: 15px; line-height: 1.6; }
-            .hero-image img { height: 260px; }
-            .cards-grid { grid-template-columns: 1fr; }
-            .card { grid-column: span 1; }
-            .card-bottom { grid-column: span 1; }
-            .card-title { font-size: 20px; }
-            .question-title { font-size: 26px; }
-            .question-subtitle { font-size: 19px; }
-            .question .check-list li { font-size: 15px; line-height: 1.45; }
-            .question-image img { max-width: 337px; }
-            .question-cta { align-self: stretch; }
-        }
-
-        @media (max-width: 479px) {
-            .hero-title { font-size: 26px; line-height: 1.15; }
-            .hero-subtitle { font-size: 16px; }
-            .hero-image img { height: 220px; }
-            .question-title { font-size: 25px; line-height: 1.1; }
-            .question .check-list li { font-size: 15px; line-height: 1.6; }
-            .question-image img { max-width: 297px; }
         }
     </style>
 </head>
@@ -637,17 +565,17 @@
         <div class="container">
             <div class="hero-inner">
                 <div class="hero-content">
-                    <h1 class="hero-title">Чеки кассовые и товарные с QR-кодом для отчётности</h1>
+                    <h1 class="hero-title">Чеки кассовые и товарные с QR-кодом <span>для отчётности</span></h1>
                     <p class="hero-subtitle">
                         <strong>Подготовим документы под вашу задачу</strong> — оперативно, аккуратно и без лишних вопросов
                     </p>
-                    <ul class="check-list hero-checks">
+                    <ul class="hero-checks">
                         <li>Настоящие чеки с QR-кодом (проверка через сайт ФНС)</li>
                         <li>Для любых сфер: стройка, сервис, розница и опт</li>
                         <li>Подготовка в день заявки</li>
                         <li>Приезжать никуда не нужно — всё удалённо</li>
                     </ul>
-                    <button type="button" class="btn btn-lg" onclick="openPopup()">Узнать подробнее</button>
+                    <button type="button" class="hero-btn" onclick="openPopup()">Узнать подробнее</button>
                 </div>
                 <div class="hero-image">
                     <img src="images/bizpoddergka_2_cheki.png" alt="Чеки">
@@ -659,7 +587,7 @@
     <!-- ============ CARDS ============ -->
     <section class="cards">
         <div class="container">
-            <div class="cards-grid" data-reveal>
+            <div class="cards-grid">
                 <div class="card">
                     <h3 class="card-title">Сотрудничаем с ИП, ООО и физлицами</h3>
                 </div>
@@ -682,11 +610,11 @@
     <!-- ============ QUESTION ============ -->
     <section class="question">
         <div class="container">
-            <div class="question-inner" data-reveal>
+            <div class="question-inner">
                 <div class="question-left">
-                    <h2 class="section-title question-title">Вопрос с отчётностью<br>решается за один день</h2>
+                    <h2 class="question-title">Вопрос с отчётностью<br>решается за один день</h2>
                     <h3 class="question-subtitle">Что получаете:</h3>
-                    <ul class="check-list">
+                    <ul class="question-list">
                         <li>Обоснование понесённых расходов</li>
                         <li>Спокойное закрытие отчётов</li>
                         <li>Меньше вопросов со стороны банка</li>
@@ -695,18 +623,18 @@
                 </div>
                 <div class="question-right">
                     <h3 class="question-subtitle">Порядок работы:</h3>
-                    <ul class="check-list">
+                    <ul class="question-list">
                         <li>Вы отправляете нам заявку</li>
                         <li>Уточняем детали и перечень бумаг</li>
                         <li>Присылаем сканы на согласование</li>
                         <li>Передаём оригиналы → оплата по факту</li>
                     </ul>
-                    <a href="https://t.me/bizpoddergka_bot" target="_blank" rel="noopener noreferrer" class="btn question-cta">
+                    <a href="https://t.me/bizpoddergka_bot" target="_blank" rel="noopener noreferrer" class="question-cta">
                         Оставьте заявку — подготовим документы сегодня!
                     </a>
                 </div>
             </div>
-            <div class="question-image" data-reveal>
+            <div class="question-image">
                 <img src="images/cheki_2_poslednii_pk.png" alt="Документы">
             </div>
         </div>
@@ -717,10 +645,9 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-inner">
-                <a href="privacy.html">Политика конфиденциальности</a>
-                <a href="cookie.html">Согласие на обработку персональных данных</a>
-                <a href="index.html">Главная</a>
-                <a href="cheque.html">Кассовые чеки</a>
+                <a href="privacy.html" target="_blank" rel="noopener noreferrer">📄 Политика конфиденциальности</a>
+                <span style="color:rgba(255,255,255,0.3);">·</span>
+                <a href="cookie.html" target="_blank" rel="noopener noreferrer">🍪 Политика cookies</a>
             </div>
         </div>
     </footer>
@@ -731,24 +658,25 @@
             <button type="button" class="popup-close" onclick="closePopup()" aria-label="Закрыть">✕</button>
             <h2 class="popup-title" id="popupTitle">Оставьте заявку и мы свяжемся с Вами</h2>
             <form class="popup-form" onsubmit="submitPopup(event)">
-                <div class="contact-methods-title">Выберите способ связи</div>
-                <div class="contact-methods">
-                    <label class="contact-method">
+                <div class="popup-contact-methods">
+                    <label class="popup-contact-method">
                         <input type="radio" name="popup-contact" value="phone" checked>
-                        <span><img src="images/phone.png" alt="Телефон"> Телефон</span>
+                        <img src="images/phone.png" alt="Телефон">
+                        <span>Телефон</span>
                     </label>
-                    <label class="contact-method">
+                    <label class="popup-contact-method">
                         <input type="radio" name="popup-contact" value="telegram">
-                        <span><img src="images/telegram.png" alt="Telegram"> Telegram</span>
+                        <img src="images/telegram.png" alt="Telegram">
+                        <span>Telegram</span>
                     </label>
                 </div>
                 <input type="tel" class="popup-input" placeholder="+7 (___) ___-__-__" aria-label="Телефон">
                 <input type="email" class="popup-input" placeholder="Напишите ваш email" aria-label="Email">
                 <label class="popup-checkbox">
-                    <input type="checkbox" id="popupConsent" data-consent-for="popupSubmitBtn">
+                    <input type="checkbox" id="popupConsent">
                     <span>Нажимая на кнопку вы соглашаетесь с <a href="privacy.html" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">политикой конфиденциальности</a></span>
                 </label>
-                <button type="submit" class="btn btn-block" id="popupSubmitBtn" disabled>Оставить заявку</button>
+                <button type="submit" class="popup-submit" id="popupSubmitBtn" disabled>Оставить заявку</button>
             </form>
         </div>
     </div>
@@ -768,74 +696,50 @@
     </div>
 
     <script>
-        /* ===== ОБЩИЙ ШАБЛОН: СКРИПТЫ (идентичны на index.html и cheque.html) ===== */
-        (function () {
-            var header = document.querySelector('.header');
-            var scrollTopBtn = document.getElementById('scrollTop');
-            function onScroll() {
-                header.classList.toggle('scrolled', window.scrollY > 10);
-                scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
-            scrollTopBtn.addEventListener('click', function () {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+        // Popup
+        function openPopup() { document.getElementById('popup').classList.add('active'); }
+        function closePopup() { document.getElementById('popup').classList.remove('active'); }
+        function submitPopup(e) {
+            e.preventDefault();
+            alert('Заявка отправлена! Мы свяжемся с вами.');
+            closePopup();
+        }
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
 
-            var banner = document.getElementById('cookieBanner');
-            if (localStorage.getItem('cookieAccepted')) banner.classList.add('hidden');
-            window.closeCookie = function () {
-                banner.classList.add('hidden');
-                localStorage.setItem('cookieAccepted', 'true');
-            };
+        // Cookie
+        if (localStorage.getItem('cookieAccepted')) {
+            document.getElementById('cookieBanner').classList.add('hidden');
+        }
+        function closeCookie() {
+            document.getElementById('cookieBanner').classList.add('hidden');
+            localStorage.setItem('cookieAccepted', 'true');
+        }
 
-            var popup = document.getElementById('popup');
-            window.openPopup = function () {
-                popup.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-            window.closePopup = function () {
-                popup.classList.remove('active');
-                document.body.style.overflow = '';
-            };
-            popup.addEventListener('click', function (e) {
-                if (e.target === popup) closePopup();
-            });
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && popup.classList.contains('active')) closePopup();
-            });
-            window.submitPopup = function (e) {
-                e.preventDefault();
-                alert('Заявка отправлена! Мы свяжемся с вами.');
-                e.target.reset();
-                var btn = document.getElementById('popupSubmitBtn');
-                if (btn) btn.disabled = true;
-                closePopup();
-            };
-
-            document.querySelectorAll('input[data-consent-for]').forEach(function (cb) {
-                var btn = document.getElementById(cb.getAttribute('data-consent-for'));
-                if (!btn) return;
-                var sync = function () { btn.disabled = !cb.checked; };
-                cb.addEventListener('change', sync);
-                sync();
-            });
-
-            if ('IntersectionObserver' in window) {
-                var io = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (en) {
-                        if (en.isIntersecting) {
-                            en.target.classList.add('in');
-                            io.unobserve(en.target);
-                        }
-                    });
-                }, { threshold: 0.12 });
-                document.querySelectorAll('[data-reveal]').forEach(function (el) {
-                    el.classList.add('reveal');
-                    io.observe(el);
+        // Consent checkbox → enable/disable submit button
+        (function initConsent() {
+            const popupCb = document.getElementById('popupConsent');
+            const popupBtn = document.getElementById('popupSubmitBtn');
+            if (popupCb && popupBtn) {
+                popupCb.addEventListener('change', function() {
+                    popupBtn.disabled = !this.checked;
                 });
             }
         })();
+
+        // Scroll to top
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
