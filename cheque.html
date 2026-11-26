@@ -504,7 +504,7 @@
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 15px;
         }
 
@@ -513,14 +513,17 @@
             border-radius: var(--radius);
             padding: 30px 25px;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             min-height: 140px;
+            grid-column: span 2;
             transition: transform 0.3s ease, background 0.3s ease;
         }
 
         .card:hover { transform: translateY(-3px); background: var(--accent-dark); }
 
-        .card-wide { grid-column: 1 / -1; }
+        .card-bottom { grid-column: span 3; }
 
         .card-title { font-size: 18px; font-weight: 600; color: #ffffff; line-height: 1.3; }
 
@@ -569,8 +572,9 @@
             .hero-checks li { font-size: 16px; line-height: 1.6; }
             .hero-image { order: -1; margin-bottom: 10px; max-width: 420px; }
             .hero-image img { height: 300px; }
-            .cards-grid { grid-template-columns: repeat(2, 1fr); }
-            .card-wide { grid-column: 1 / -1; }
+            .cards-grid { grid-template-columns: repeat(6, 1fr); }
+            .card { grid-column: span 3; }
+            .card-bottom { grid-column: span 3; }
             .question-inner { grid-template-columns: 1fr; gap: 30px; }
             .question-image { margin-top: 20px; }
             .question-image img { max-width: 297px; }
@@ -583,6 +587,8 @@
             .hero-checks li { font-size: 15px; line-height: 1.6; }
             .hero-image img { height: 260px; }
             .cards-grid { grid-template-columns: 1fr; }
+            .card { grid-column: span 1; }
+            .card-bottom { grid-column: span 1; }
             .card-title { font-size: 20px; }
             .question-title { font-size: 26px; }
             .question-subtitle { font-size: 19px; }
@@ -662,10 +668,10 @@
                 <div class="card">
                     <h3 class="card-title">Без авансов</h3>
                 </div>
-                <div class="card">
+                <div class="card card-bottom">
                     <h3 class="card-title">Готовим чеки, накладные и акты</h3>
                 </div>
-                <div class="card card-wide">
+                <div class="card card-bottom">
                     <h3 class="card-title">Полная конфиденциальность данных</h3>
                 </div>
             </div>
