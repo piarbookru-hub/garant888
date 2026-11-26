@@ -288,7 +288,6 @@
         /* ============ QUESTION ============ */
         .question { padding: 40px 0; }
 
-        /* ИСПРАВЛЕНО: картинка теперь часть grid, можно управлять порядком */
         .question-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -359,15 +358,15 @@
 
         .question-cta:hover { background: #2563eb; transform: translateY(-2px); }
 
+        /* ИЗМЕНЕНО: картинка теперь по центру и в 2 раза меньше на десктопе (600px вместо 1200px) */
         .question-image {
-            /* на десктопе — на всю ширину под двумя колонками */
             grid-column: 1 / -1;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 20px;
+            margin: 20px auto 0;
             width: 100%;
-            max-width: 100%;
+            max-width: 600px;
             min-width: 0;
             overflow: hidden;
         }
@@ -469,7 +468,7 @@
             width: 100%;
             padding: 30px;
             position: relative;
-            max-height: 90vh; /* ИСПРАВЛЕНО: прокрутка на маленьких экранах */
+            max-height: 90vh;
             overflow-y: auto;
             margin: auto;
         }
@@ -504,7 +503,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 5px;
-            flex-wrap: wrap; /* ИСПРАВЛЕНО: чтобы не вылезало */
+            flex-wrap: wrap;
         }
 
         .popup-contact-method {
@@ -538,7 +537,7 @@
             border-radius: 7px;
             background: #f6f6f6;
             color: #000;
-            font-size: 16px; /* ИСПРАВЛЕНО: iOS не зумит при фокусе */
+            font-size: 16px;
             font-family: inherit;
             width: 100%;
         }
@@ -671,18 +670,22 @@
             .hero-image { order: -1; margin-bottom: 20px; width: 100%; min-width: 0; }
             .hero-image img { max-width: 100%; width: 100%; }
             .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+
+            /* На мобильном картинка снова на всю ширину, чтобы не стала крошечной */
             .question-image {
-                order: -1; /* ТЕПЕРЬ РАБОТАЕТ: картинка — grid-элемент */
+                order: -1;
                 text-align: center;
                 margin-bottom: 20px;
                 margin-top: 0;
                 width: 100%;
+                max-width: 100%;
                 min-width: 0;
             }
             .question-image img { max-width: 100%; width: 100%; }
+
             .hero { min-height: auto; padding: 30px 0 20px; }
             .cards, .question { padding: 30px 0; }
-            /* ВАЖНО: на 640–959px нижней панели нет → cookie-banner держим у края */
+
             .cookie-banner {
                 right: 15px;
                 left: 15px;
@@ -710,7 +713,6 @@
             .popup-container { padding: 20px; }
             .popup-title { margin-bottom: 15px; }
 
-            /* Нижняя панель ВКЛЮЧАЕТСЯ здесь → отступы сдвигаются */
             .mobile-panel { display: flex; }
             body { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
             .scroll-top { bottom: calc(90px + env(safe-area-inset-bottom)); }
@@ -761,17 +763,17 @@
         <div class="container">
             <div class="header-inner">
                 <a href="index.html" class="header-logo">
-                    <img src="images/logo_ikonka.png" alt="Бизнес-поддержка">
+                    <img src="images/logo_ikonka.png" alt="Бизнес-поддержка" width="36" height="36">
                     <span>Бизнес-поддержка</span>
                 </a>
                 <div class="header-right">
                     <a href="index.html" class="header-link">← На главную</a>
                     <a href="mailto:bizpoddergka2027@gmail.com" class="header-email">
-                        <img src="images/pochta.png" alt="Email">
+                        <img src="images/pochta.png" alt="Email" width="20" height="20">
                         <span>bizpoddergka2027@gmail.com</span>
                     </a>
                     <a href="https://t.me/bizpoddergka_bot" target="_blank" rel="noopener noreferrer" class="header-telegram">
-                        <img src="images/telegram.png" alt="Telegram">
+                        <img src="images/telegram.png" alt="Telegram" width="29" height="29">
                     </a>
                 </div>
             </div>
@@ -797,7 +799,7 @@
                     <button type="button" class="hero-btn" onclick="openPopup()">Узнать подробнее</button>
                 </div>
                 <div class="hero-image">
-                    <img src="images/bizpoddergka_2_cheki.png" alt="Чеки">
+                    <img src="images/bizpoddergka_2_cheki.webp" alt="Чеки" width="600" height="400" loading="lazy">
                 </div>
             </div>
         </div>
@@ -829,7 +831,6 @@
     <!-- ============ QUESTION ============ -->
     <section class="question">
         <div class="container">
-            <!-- ИСПРАВЛЕНО: question-image перенесён ВНУТРЬ .question-inner -->
             <div class="question-inner">
                 <div class="question-left">
                     <h2 class="question-title">Вопрос с отчётностью<br>решается за один день</h2>
@@ -854,7 +855,7 @@
                     </a>
                 </div>
                 <div class="question-image">
-                    <img src="images/cheki_2_poslednii_pk.png" alt="Документы">
+                    <img src="images/cheki_2_poslednii_pk.webp" alt="Документы" width="600" height="400" loading="lazy">
                 </div>
             </div>
         </div>
@@ -881,12 +882,12 @@
                 <div class="popup-contact-methods">
                     <label class="popup-contact-method">
                         <input type="radio" name="popup-contact" value="phone" checked>
-                        <img src="images/phone.png" alt="Телефон">
+                        <img src="images/phone.png" alt="Телефон" width="18" height="18">
                         <span>Телефон</span>
                     </label>
                     <label class="popup-contact-method">
                         <input type="radio" name="popup-contact" value="telegram">
-                        <img src="images/telegram.png" alt="Telegram">
+                        <img src="images/telegram.png" alt="Telegram" width="18" height="18">
                         <span>Telegram</span>
                     </label>
                 </div>
@@ -934,7 +935,7 @@
             if (e.target === this) closePopup();
         });
 
-        // Cookie (try/catch для приватного режима Safari)
+        // Cookie
         try {
             if (localStorage.getItem('cookieAccepted')) {
                 document.getElementById('cookieBanner').classList.add('hidden');
