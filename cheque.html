@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Кассовые и товарные чеки с QR для отчётности — Бизнес-поддержка</title>
     <meta name="description" content="Оформим документы под любую задачу — быстро, корректно и без лишних вопросов. Настоящие чеки с QR-кодом, проверка через ФНС.">
     <link rel="icon" type="image/png" sizes="32x32" href="images/logo_ikonka.png">
@@ -38,12 +38,18 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
         body {
             font-family: 'Inter', Arial, sans-serif;
             background: #2a2a2a;
             color: #ffffff;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         .container {
@@ -76,14 +82,18 @@
             font-weight: 700;
             color: #ffffff;
             text-decoration: none;
+            min-width: 0;
+            flex-shrink: 0;
         }
 
-        .header-logo img { width: 36px; height: 36px; }
+        .header-logo img { width: 36px; height: 36px; flex-shrink: 0; }
+        .header-logo span { white-space: nowrap; }
 
         .header-right {
             display: flex;
             align-items: center;
             gap: 15px;
+            min-width: 0;
         }
 
         .header-link {
@@ -100,6 +110,8 @@
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .header-link:hover { background: #3b82f6; color: #fff; }
@@ -113,10 +125,17 @@
             font-weight: 500;
             text-decoration: none;
             transition: opacity 0.3s ease;
+            min-width: 0;
+        }
+
+        .header-email span {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            min-width: 0;
         }
 
         .header-email:hover { opacity: 0.7; }
-        .header-email img { width: 20px; height: 20px; }
+        .header-email img { width: 20px; height: 20px; flex-shrink: 0; }
 
         .header-telegram {
             display: inline-flex;
@@ -125,6 +144,7 @@
             width: 29px;
             height: 29px;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .header-telegram:hover { transform: scale(1.1); }
@@ -132,7 +152,7 @@
 
         /* ============ HERO ============ */
         .hero {
-            min-height: 80vh;
+            min-height: auto;
             display: flex;
             align-items: center;
             padding: 40px 0 25px;
@@ -147,7 +167,7 @@
             width: 100%;
         }
 
-        .hero-content { max-width: 550px; }
+        .hero-content { max-width: 100%; min-width: 0; }
 
         .hero-title {
             font-size: var(--fs-xl);
@@ -195,8 +215,9 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0 30px;
-            height: 48px;
+            padding: 12px 30px;
+            min-height: 48px;
+            height: auto;
             background: #3b82f6;
             border: none;
             border-radius: 50px;
@@ -206,12 +227,29 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            line-height: 1.3;
+            white-space: normal;
+            text-align: center;
         }
 
         .hero-btn:hover { background: #2563eb; transform: translateY(-2px); }
 
-        .hero-image { display: flex; justify-content: center; align-items: center; }
-        .hero-image img { max-width: 100%; height: auto; border-radius: 12px; }
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .hero-image img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
 
         /* ============ CARDS ============ */
         .cards { padding: 40px 0; }
@@ -232,23 +270,33 @@
             text-align: center;
             min-height: 120px;
             transition: transform 0.3s ease, background 0.3s ease;
+            min-width: 0;
         }
 
         .card:hover { transform: translateY(-3px); background: #2563eb; }
 
         .card-bottom { grid-column: span 1; }
 
-        .card-title { font-size: var(--fs-md); font-weight: 700; color: #ffffff; line-height: 1.3; }
+        .card-title {
+            font-size: var(--fs-md);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
 
         /* ============ QUESTION ============ */
         .question { padding: 40px 0; }
 
+        /* ИСПРАВЛЕНО: картинка теперь часть grid, можно управлять порядком */
         .question-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
             align-items: flex-start;
         }
+
+        .question-left, .question-right { min-width: 0; }
 
         .question-title {
             font-size: var(--fs-lg);
@@ -292,8 +340,9 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0 30px;
-            height: 48px;
+            padding: 12px 30px;
+            min-height: 48px;
+            height: auto;
             background: #3b82f6;
             border: none;
             border-radius: 50px;
@@ -303,21 +352,32 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            line-height: 1.3;
+            white-space: normal;
+            text-align: center;
         }
 
         .question-cta:hover { background: #2563eb; transform: translateY(-2px); }
 
         .question-image {
+            /* на десктопе — на всю ширину под двумя колонками */
+            grid-column: 1 / -1;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 20px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .question-image img {
             max-width: 100%;
+            width: 100%;
             height: auto;
             border-radius: 12px;
+            display: block;
         }
 
         /* ============ FOOTER ============ */
@@ -397,6 +457,7 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            padding: 15px;
         }
 
         .popup.active { display: flex; }
@@ -405,9 +466,12 @@
             background: #ffffff;
             border-radius: 15px;
             max-width: 500px;
-            width: 90%;
+            width: 100%;
             padding: 30px;
             position: relative;
+            max-height: 90vh; /* ИСПРАВЛЕНО: прокрутка на маленьких экранах */
+            overflow-y: auto;
+            margin: auto;
         }
 
         .popup-close {
@@ -421,6 +485,8 @@
             cursor: pointer;
             font-size: var(--fs-lg);
             color: #333;
+            line-height: 1;
+            z-index: 1;
         }
 
         .popup-title {
@@ -429,14 +495,21 @@
             color: #2a2a2a;
             text-align: center;
             margin-bottom: 20px;
+            padding-right: 20px;
         }
 
         .popup-form { display: flex; flex-direction: column; gap: 12px; }
 
-        .popup-contact-methods { display: flex; gap: 10px; margin-bottom: 5px; }
+        .popup-contact-methods {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 5px;
+            flex-wrap: wrap; /* ИСПРАВЛЕНО: чтобы не вылезало */
+        }
 
         .popup-contact-method {
-            flex: 1;
+            flex: 1 1 calc(50% - 5px);
+            min-width: 0;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -451,8 +524,13 @@
         }
 
         .popup-contact-method:hover { background: #e8e8e8; }
-        .popup-contact-method input[type="radio"] { margin-right: 6px; accent-color: #3b82f6; }
-        .popup-contact-method img { width: 18px; height: 18px; object-fit: contain; }
+        .popup-contact-method input[type="radio"] { margin-right: 6px; accent-color: #3b82f6; flex-shrink: 0; }
+        .popup-contact-method img { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+        .popup-contact-method span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
         .popup-input {
             padding: 14px 20px;
@@ -460,8 +538,9 @@
             border-radius: 7px;
             background: #f6f6f6;
             color: #000;
-            font-size: var(--fs-sm);
+            font-size: 16px; /* ИСПРАВЛЕНО: iOS не зумит при фокусе */
             font-family: inherit;
+            width: 100%;
         }
 
         .popup-input::placeholder { color: rgba(0, 0, 0, 0.5); }
@@ -475,11 +554,13 @@
             color: #666;
         }
 
-        .popup-checkbox input { margin-top: 2px; }
+        .popup-checkbox input { margin-top: 2px; flex-shrink: 0; }
         .popup-checkbox a { color: #3b82f6; text-decoration: underline; }
 
         .popup-submit {
             padding: 15px;
+            min-height: 48px;
+            height: auto;
             background: #3b82f6;
             border: none;
             border-radius: 50px;
@@ -490,6 +571,8 @@
             transition: background 0.3s ease;
             font-family: inherit;
             margin-top: 10px;
+            line-height: 1.3;
+            white-space: normal;
         }
 
         .popup-submit:hover { background: #2563eb; }
@@ -509,6 +592,7 @@
             border-radius: 10px;
             padding: 18px 22px;
             max-width: 320px;
+            width: calc(100% - 40px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             z-index: 500;
             font-size: var(--fs-xs);
@@ -544,6 +628,7 @@
             padding-bottom: calc(12px + env(safe-area-inset-bottom));
             z-index: 998;
             gap: 10px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
         }
 
         .mobile-panel-btn {
@@ -551,7 +636,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 48px;
+            min-height: 48px;
+            padding: 10px;
             border-radius: 50px;
             font-size: var(--fs-sm);
             font-weight: 600;
@@ -560,6 +646,7 @@
             transition: all 0.3s ease;
             border: none;
             font-family: inherit;
+            line-height: 1.2;
         }
 
         .mobile-panel-btn-primary {
@@ -580,44 +667,91 @@
         /* ============ RESPONSIVE ============ */
         @media (max-width: 959px) {
             .hero-inner, .question-inner { grid-template-columns: 1fr; gap: 20px; }
-            .hero-content { max-width: 100%; text-align: center; }
-            .hero-image { order: -1; margin-bottom: 20px; }
-            .hero-image img { max-width: 400px; }
+            .hero-content, .question-left, .question-right { max-width: 100%; text-align: center; min-width: 0; }
+            .hero-image { order: -1; margin-bottom: 20px; width: 100%; min-width: 0; }
+            .hero-image img { max-width: 100%; width: 100%; }
             .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
-            .question-image { order: -1; text-align: center; margin-bottom: 20px; }
-            .question-image img { max-width: 400px; }
+            .question-image {
+                order: -1; /* ТЕПЕРЬ РАБОТАЕТ: картинка — grid-элемент */
+                text-align: center;
+                margin-bottom: 20px;
+                margin-top: 0;
+                width: 100%;
+                min-width: 0;
+            }
+            .question-image img { max-width: 100%; width: 100%; }
             .hero { min-height: auto; padding: 30px 0 20px; }
             .cards, .question { padding: 30px 0; }
+            /* ВАЖНО: на 640–959px нижней панели нет → cookie-banner держим у края */
+            .cookie-banner {
+                right: 15px;
+                left: 15px;
+                bottom: 20px;
+                max-width: calc(100% - 30px);
+                width: auto;
+            }
+            .popup-input { font-size: 16px; }
         }
 
         @media (max-width: 639px) {
-            .hero-btn { width: 100%; height: 48px; }
+            .hero-btn { width: 100%; }
             .cards-grid { grid-template-columns: 1fr; gap: 20px; }
-            .header-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .header-right { width: 100%; flex-wrap: wrap; gap: 10px; }
-            .question-cta { width: 100%; text-align: center; height: 48px; }
+
+            .header-inner { flex-direction: column; align-items: stretch; gap: 10px; }
+            .header-right { width: 100%; flex-wrap: wrap; gap: 10px; justify-content: flex-start; }
+
+            .question-cta { width: 100%; }
             .popup-contact-methods { flex-direction: column; }
+            .popup-contact-method { flex: 1 1 100%; }
+
             .hero { padding: 20px 0 15px; }
             .cards, .question { padding: 25px 0; }
             .card { min-height: 90px; padding: 18px 15px; }
             .popup-container { padding: 20px; }
             .popup-title { margin-bottom: 15px; }
+
+            /* Нижняя панель ВКЛЮЧАЕТСЯ здесь → отступы сдвигаются */
             .mobile-panel { display: flex; }
-            body { padding-bottom: 80px; }
-            .scroll-top { bottom: 90px; }
+            body { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
+            .scroll-top { bottom: calc(90px + env(safe-area-inset-bottom)); }
+            .cookie-banner {
+                right: 10px;
+                left: 10px;
+                bottom: calc(90px + env(safe-area-inset-bottom));
+                max-width: none;
+                width: auto;
+            }
         }
 
         @media (max-width: 479px) {
             .container { padding: 0 15px; }
-            .cookie-banner { left: 15px; right: 15px; bottom: 15px; max-width: none; }
-            .scroll-top { bottom: 90px; right: 15px; width: 44px; height: 44px; }
+            .hero-btn { padding: 12px 20px; }
+            .question-cta { padding: 12px 20px; }
+
+            .cookie-banner {
+                left: 10px;
+                right: 10px;
+                bottom: calc(85px + env(safe-area-inset-bottom));
+                max-width: none;
+                width: auto;
+                padding: 15px 18px;
+            }
+
+            .scroll-top {
+                bottom: calc(85px + env(safe-area-inset-bottom));
+                right: 15px;
+                width: 44px;
+                height: 44px;
+            }
             .scroll-top svg { width: 18px; height: 18px; }
+
             .header-logo { font-size: 15px; }
             .header-logo img { width: 32px; height: 32px; }
             .header-email { font-size: 13px; }
             .header-email img { width: 18px; height: 18px; }
             .header-telegram { width: 26px; height: 26px; }
             .header-link { height: 32px; font-size: 13px; padding: 0 15px; }
+            .mobile-panel-btn { min-height: 44px; font-size: 13px; }
         }
     </style>
 </head>
@@ -695,6 +829,7 @@
     <!-- ============ QUESTION ============ -->
     <section class="question">
         <div class="container">
+            <!-- ИСПРАВЛЕНО: question-image перенесён ВНУТРЬ .question-inner -->
             <div class="question-inner">
                 <div class="question-left">
                     <h2 class="question-title">Вопрос с отчётностью<br>решается за один день</h2>
@@ -718,9 +853,9 @@
                         Оставьте заявку — подготовим документы сегодня!
                     </a>
                 </div>
-            </div>
-            <div class="question-image">
-                <img src="images/cheki_2_poslednii_pk.png" alt="Документы">
+                <div class="question-image">
+                    <img src="images/cheki_2_poslednii_pk.png" alt="Документы">
+                </div>
             </div>
         </div>
     </section>
@@ -795,17 +930,19 @@
             alert('Заявка отправлена! Мы свяжемся с вами.');
             closePopup();
         }
-        document.getElementById('popup').addEventListener('click', function(e) {
+        document.getElementById('popup').addEventListener('click', function (e) {
             if (e.target === this) closePopup();
         });
 
-        // Cookie
-        if (localStorage.getItem('cookieAccepted')) {
-            document.getElementById('cookieBanner').classList.add('hidden');
-        }
+        // Cookie (try/catch для приватного режима Safari)
+        try {
+            if (localStorage.getItem('cookieAccepted')) {
+                document.getElementById('cookieBanner').classList.add('hidden');
+            }
+        } catch (e) { /* ignore */ }
         function closeCookie() {
             document.getElementById('cookieBanner').classList.add('hidden');
-            localStorage.setItem('cookieAccepted', 'true');
+            try { localStorage.setItem('cookieAccepted', 'true'); } catch (e) {}
         }
 
         // Consent checkbox → enable/disable submit button
@@ -813,7 +950,7 @@
             const popupCb = document.getElementById('popupConsent');
             const popupBtn = document.getElementById('popupSubmitBtn');
             if (popupCb && popupBtn) {
-                popupCb.addEventListener('change', function() {
+                popupCb.addEventListener('change', function () {
                     popupBtn.disabled = !this.checked;
                 });
             }
