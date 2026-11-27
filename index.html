@@ -925,6 +925,22 @@
             opacity: 0.7;
         }
 
+        /* Статус отправки формы (без рамок — только фон и цвет) */
+        .form-status {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: var(--fs-sm);
+            line-height: 1.45;
+        }
+        .form-status.ok, .form-status.err { display: block; }
+        .quiz .form-status.ok { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+        .quiz .form-status.err { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+        .popup .form-status.ok { background: #e8f8ee; color: #147a43; }
+        .popup .form-status.err { background: #fdecec; color: #b3261e; }
+        .form-honey { display: none; }
+
         /* ============ COOKIE BANNER ============ */
         .cookie-banner {
             position: fixed;
@@ -1276,6 +1292,7 @@
                             <label class="quiz-contact-method"><input type="radio" name="contact-type" value="phone" checked><img src="images/phone.png" alt="Телефон"><span>Телефон</span></label>
                             <label class="quiz-contact-method"><input type="radio" name="contact-type" value="telegram"><img src="images/telegram.png" alt="Telegram"><span>Telegram</span></label>
                         </div>
+                        <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <input type="tel" class="quiz-input" placeholder="+7 (___) ___-__-__" aria-label="Телефон">
                         <input type="email" class="quiz-input" placeholder="Напишите ваш email" aria-label="Email">
                         <label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;font-size:var(--fs-xs);color:rgba(255,255,255,0.6);">
@@ -1283,6 +1300,7 @@
                             <span>Я согласен с <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color:#3b82f6;text-decoration:underline;" onclick="event.stopPropagation();">политикой конфиденциальности</a></span>
                         </label>
                         <button type="button" class="quiz-submit" id="quizSubmitBtn" onclick="submitQuiz()" disabled>Узнать расчёт и получить гайд</button>
+                        <p class="form-status" id="quizStatus" role="status" aria-live="polite"></p>
                         <div class="quiz-nav" style="margin-top:15px;">
                             <button type="button" class="quiz-btn" onclick="prevStep(3)">Назад</button>
                         </div>
@@ -1354,6 +1372,7 @@
             <button type="button" class="popup-close" onclick="closePopup()" aria-label="Закрыть">✕</button>
             <h2 class="popup-title" id="popupTitle">Оставьте заявку и мы свяжемся с Вами</h2>
             <form class="popup-form" onsubmit="submitPopup(event)">
+                <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <div class="popup-contact-methods">
                     <label class="quiz-contact-method">
                         <input type="radio" name="popup-contact" value="phone" checked>
@@ -1373,6 +1392,7 @@
                     <span>Нажимая на кнопку вы соглашаетесь с <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color:#3b82f6;text-decoration:underline;" onclick="event.stopPropagation();">политикой конфиденциальности</a></span>
                 </label>
                 <button type="submit" class="popup-submit" id="popupSubmitBtn" disabled>Оставить заявку</button>
+                <p class="form-status" id="popupStatus" role="status" aria-live="polite"></p>
             </form>
         </div>
     </div>
@@ -1398,6 +1418,27 @@
     </div>
 
     <script>
+        // Отправка заявок на почту через FormSubmit (AJAX, без сервера)
+        const LEAD_EMAIL = 'serg333serg@yandex.ru';
+        function leadDigits(v) { return (v || '').replace(/\D/g, ''); }
+        function leadEmailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((v || '').trim()); }
+        function setLeadStatus(el, kind, text) {
+            if (!el) return;
+            el.className = 'form-status' + (kind ? ' ' + kind : '');
+            el.textContent = text || '';
+        }
+        async function sendLead(payload) {
+            const res = await fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const data = await res.json().catch(function () { return {}; });
+            if (String(data.success) !== 'true') throw new Error(data.message || 'Ошибка отправки');
+            return data;
+        }
+
         // Quiz
         let currentStep = 1;
         function nextStep(s) {
@@ -1412,17 +1453,96 @@
             currentStep = s - 1;
             document.getElementById('quizProgress').style.width = (currentStep / 3 * 100) + '%';
         }
-        function submitQuiz() {
-            alert('Спасибо! Мы свяжемся с вами в ближайшее время и отправим гайд.');
+        async function submitQuiz() {
+            const status = document.getElementById('quizStatus');
+            const btn = document.getElementById('quizSubmitBtn');
+            const step = document.getElementById('step3');
+            const consent = document.getElementById('quizConsent');
+            const method = (step.querySelector('input[name="contact-type"]:checked') || {}).value || 'phone';
+            const phone = step.querySelector('input[type="tel"]').value.trim();
+            const email = step.querySelector('input[type="email"]').value.trim();
+            const period = (document.querySelector('input[name="period"]:checked') || {}).value || 'не выбран';
+            const amount = (document.querySelector('input[name="amount"]:checked') || {}).value || 'не выбран';
+            const honey = (step.querySelector('input[name="_honey"]') || {}).value || '';
+            if (leadDigits(phone).length !== 11 && !leadEmailOk(email)) {
+                setLeadStatus(status, 'err', 'Укажите телефон полностью (11 цифр) или корректный email.');
+                return;
+            }
+            const oldLabel = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Отправляем…';
+            setLeadStatus(status, '', '');
+            try {
+                await sendLead({
+                    _subject: 'Заявка из квиза — Бизнес-поддержка',
+                    _template: 'table',
+                    _captcha: 'false',
+                    _honey: honey,
+                    'Период': period,
+                    'Сумма НДС': amount,
+                    'Способ связи': method === 'telegram' ? 'Telegram' : 'Телефон',
+                    'Телефон': phone || '—',
+                    'Email': email || '—',
+                    'Страница': 'index.html (квиз)'
+                });
+                setLeadStatus(status, 'ok', 'Спасибо! Заявка отправлена. Мы свяжемся с вами и отправим гайд.');
+                step.querySelector('input[type="tel"]').value = '';
+                step.querySelector('input[type="email"]').value = '';
+                if (consent) consent.checked = false;
+                btn.textContent = 'Отправлено ✓';
+                setTimeout(function () { btn.textContent = oldLabel; }, 3000);
+            } catch (err) {
+                setLeadStatus(status, 'err', 'Не удалось отправить. Проверьте интернет и попробуйте ещё раз или напишите в Telegram.');
+                btn.disabled = !consent.checked;
+                btn.textContent = oldLabel;
+            }
         }
 
         // Popup
         function openPopup() { document.getElementById('popup').classList.add('active'); }
         function closePopup() { document.getElementById('popup').classList.remove('active'); }
-        function submitPopup(e) {
+        async function submitPopup(e) {
             e.preventDefault();
-            alert('Заявка отправлена! Мы свяжемся с вами.');
-            closePopup();
+            const form = e.target;
+            const status = document.getElementById('popupStatus');
+            const btn = document.getElementById('popupSubmitBtn');
+            const consent = document.getElementById('popupConsent');
+            const method = (form.querySelector('input[name="popup-contact"]:checked') || {}).value || 'phone';
+            const phone = form.querySelector('input[type="tel"]').value.trim();
+            const email = form.querySelector('input[type="email"]').value.trim();
+            const honey = (form.querySelector('input[name="_honey"]') || {}).value || '';
+            if (leadDigits(phone).length !== 11 && !leadEmailOk(email)) {
+                setLeadStatus(status, 'err', 'Укажите телефон полностью (11 цифр) или корректный email.');
+                return;
+            }
+            const oldLabel = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Отправляем…';
+            setLeadStatus(status, '', '');
+            try {
+                await sendLead({
+                    _subject: 'Новая заявка с сайта — Бизнес-поддержка',
+                    _template: 'table',
+                    _captcha: 'false',
+                    _honey: honey,
+                    'Способ связи': method === 'telegram' ? 'Telegram' : 'Телефон',
+                    'Телефон': phone || '—',
+                    'Email': email || '—',
+                    'Страница': (location.pathname.split('/').pop() || 'index.html')
+                });
+                setLeadStatus(status, 'ok', 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+                form.reset();
+                btn.textContent = 'Отправлено ✓';
+                setTimeout(function () {
+                    closePopup();
+                    btn.textContent = oldLabel;
+                    setLeadStatus(status, '', '');
+                }, 2600);
+            } catch (err) {
+                setLeadStatus(status, 'err', 'Не удалось отправить заявку. Проверьте интернет и попробуйте ещё раз или напишите в Telegram.');
+                btn.disabled = !consent.checked;
+                btn.textContent = oldLabel;
+            }
         }
         document.getElementById('popup').addEventListener('click', function (e) {
             if (e.target === this) closePopup();
@@ -1455,6 +1575,33 @@
                     popupBtn.disabled = !this.checked;
                 });
             }
+        })();
+
+        // Маска телефона: +7 (___) ___-__-__ (работает и при вставке из буфера)
+        (function initPhoneMask() {
+            function formatPhone(raw) {
+                let digits = raw.replace(/\D/g, '');
+                if (!digits) return '';
+                if (digits[0] === '8') digits = '7' + digits.slice(1);
+                if (digits[0] !== '7') digits = '7' + digits;
+                digits = digits.slice(0, 11);
+                let result = '+7';
+                if (digits.length > 1) result += ' (' + digits.slice(1, 4);
+                if (digits.length > 4) result += ') ' + digits.slice(4, 7);
+                if (digits.length > 7) result += '-' + digits.slice(7, 9);
+                if (digits.length > 9) result += '-' + digits.slice(9, 11);
+                return result;
+            }
+            document.querySelectorAll('input[type="tel"]').forEach(function (input) {
+                input.addEventListener('input', function (e) {
+                    let raw = e.target.value;
+                    if (e.inputType && e.inputType.indexOf('delete') === 0) {
+                        raw = raw.replace(/\D+$/, '');
+                    }
+                    const formatted = formatPhone(raw);
+                    if (e.target.value !== formatted) e.target.value = formatted;
+                });
+            });
         })();
 
         // Scroll to top
